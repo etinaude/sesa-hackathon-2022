@@ -1,0 +1,5 @@
+{
+  "packages": ["backend", "bus-thoughts"],
+  "version": "0.0.0",
+  "npmClient": "npm"
+}
