@@ -1,0 +1,16 @@
+.thoughtBubble {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+p {
+  color: #444;
+}
