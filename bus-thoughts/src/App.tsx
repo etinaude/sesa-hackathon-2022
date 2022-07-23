@@ -54,9 +54,9 @@ const App: React.FC = () => (
           <Route exact path="/my-thoughts">
             <MyThoughts />
           </Route>
-          <Route path="/">
+          {/* <Route path="/">
             <Redirect exact to="/tab1" />
-          </Route> */
+          </Route>  */}
         </BrowserRouter>
       </IonRouterOutlet>
     </IonReactRouter>

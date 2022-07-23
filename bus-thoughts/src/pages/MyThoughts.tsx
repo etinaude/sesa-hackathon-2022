@@ -19,7 +19,7 @@ const MyThoughts: React.FC = () => {
                     <IonToolbar>
                         <IonTitle>My Thoughts</IonTitle>
                         <IonButtons slot="primary">
-                            <IonButton id="share-button" shape="round" fill="solid">
+                            <IonButton id="share-button" shape="round" fill="solid" >
                                 Share
                             </IonButton>
                         </IonButtons>
