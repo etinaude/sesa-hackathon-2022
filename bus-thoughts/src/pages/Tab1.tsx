@@ -7,6 +7,7 @@ import {
 } from "@ionic/react";
 import InputComp from "../components/InputComp";
 import ThoughtComp from "../components/ThoughtComp";
+import Fab from "../components/Fab";
 
 import "./Tab1.css";
 
@@ -90,6 +91,8 @@ const Tab1: React.FC = () => {
 
         <InputComp></InputComp>
       </IonContent>
+
+      <Fab />
     </IonPage>
   );
 };
