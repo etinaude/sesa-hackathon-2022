@@ -1,0 +1,85 @@
+.text-cont {
+  position: relative;
+  width: 100%;
+
+  .template {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 500px;
+    resize: none;
+    font-size: 2em;
+
+    background-color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: baseline;
+    padding: 30px;
+
+    .item {
+      height: min-content;
+      min-width: 8px;
+      text-align: center;
+
+      &.invalid {
+        color: red;
+      }
+
+      &.valid {
+        color: green;
+      }
+
+      &.empty {
+        color: #222;
+      }
+    }
+  }
+
+  textarea {
+    color: transparent;
+    background-color: transparent;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    resize: none;
+    padding: 5px;
+
+    cursor: pointer;
+
+    font-size: 1px;
+    line-height: 1px;
+    border: none;
+    outline: none;
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .modal-content {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.hidden {
+  display: none;
+}
