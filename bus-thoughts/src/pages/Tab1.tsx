@@ -8,8 +8,19 @@ import {
 import InputComp from "../components/InputComp";
 import ThoughtComp from "../components/ThoughtComp";
 import Fab from "../components/Fab";
-
 import "./Tab1.css";
+import { gql, useLazyQuery, useMutation } from "@apollo/client";
+
+const ADD_MESSAGE = gql`
+mutation CreateMessage {
+  addMessage(id: "INSERTED!!!", message: "asdfasdfasdf", date: "asdfasdf", reply: "asdfasf") {
+    id
+    message
+    date
+    reply
+  }
+}
+`;
 
 // TEMP REPLACE
 const thoughtAPIResponse = [
@@ -73,6 +84,17 @@ thoughtAPIResponse.forEach((thought) => {
 });
 
 const Tab1: React.FC = () => {
+  const [addMessage, { data, loading, error }] = useMutation(ADD_MESSAGE);
+
+  if (loading || error) {
+    console.log("bad boy");
+    console.log(loading);
+    console.log(error);
+    return null;
+  }
+
+  addMessage()
+
   return (
     <IonPage>
       <IonHeader>
