@@ -5,9 +5,11 @@ export const messageSchema = gql`
 
   type Message {
     id: ID!
+    name: String!
     message: String!
     date: String!
     reply: ID
+    likes: Int!
   }
 
   type Query {
@@ -15,7 +17,14 @@ export const messageSchema = gql`
   }
 
   type Mutation {
-    addMessage(id: ID!, message: String!, date: String!, reply: ID): Message
+    addMessage(
+      id: ID!
+      name: String!
+      message: String!
+      date: String!
+      reply: ID
+    ): Message
+    setLiked(id: ID!, liked: Boolean!): Message
   }
 `;
 
@@ -25,16 +34,33 @@ export const messageResolver = {
   },
   Mutation: {
     addMessage: (parent, args) => {
-      console.log(args)
-      messageData.push(args)
-    }
+      console.log(args);
+      messageData.push(args);
+    },
+    setLiked: (parent, { id, liked }) => {
+      console.log("hit endpoint");
+      const index = messageData.findIndex((x) => x.id === id);
+
+      if (liked) {
+        messageData[index].likes += 1;
+      } else {
+        messageData[index].likes -= 1;
+      }
+
+      // Clamp to zero likes
+      messageData[index].likes = Math.max(messageData[index].likes, 0);
+
+      return messageData[index];
+    },
   },
 };
 
 export const messageData = [
   {
     id: "123",
+    name: "Bob",
     message: "hello",
     date: "2022-07-23T14:03:30Z",
+    likes: 0,
   },
 ];
