@@ -33,6 +33,8 @@ interface ContainerProps {}
 const InputComp: React.FC<ContainerProps> = () => {
   const [addMessage, { data, loading, error }] = useMutation(ADD_MESSAGE);
   const [message, setMessage] = useState("");
+const InputComp = (props: { setPostData: (props?: any) => void }) => {
+  const { setPostData } = props;
 
   if (loading || error) {
     console.log(loading);
@@ -42,7 +44,10 @@ const InputComp: React.FC<ContainerProps> = () => {
 
   return (
     <div className="input-bar">
-      <textarea placeholder="What are you thinking now?" />
+      <textarea
+        placeholder="What are you thinking now?"
+        onChange={(e) => setPostData(e.target.value)}
+      />
     </div>
   );
 };
