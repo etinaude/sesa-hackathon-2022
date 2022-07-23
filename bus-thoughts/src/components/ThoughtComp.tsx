@@ -40,39 +40,21 @@ const ThoughtComp = (props: IThoughtComp) => {
   const { thoughts } = props;
   const [hasLiked, setHasLiked] = useState(false);
   const date = new Date();
-  const [likeActive, setLikeActive] = useState(false);
+  const [likeActive, setLikeActive] = useState(thoughts.isLiked);
   const [replyActive, setReplyActive] = useState(false);
-  const [likedCount, setLikedCount] = useState(0);
+  const [likedCount, setLikedCount] = useState(thoughts.likes);
 
   const [setLikes, { data, loading, error }] = useMutation(SET_LIKES);
-
-  // const [setLiked, { data, loading, error }] = useMutation(SET_LIKED, {
-  //   variables: {
-  //     id: key,
-  //     liked: !hasLiked,
-  //   },
-  // });
-
-  // const clickedLike = () => {
-  //   console.log("hasLiked: " + !hasLiked);
-  //   setHasLiked(!hasLiked);
-  //   setLiked();
-  // };
-
-  // if (loading || error) {
-  //   console.log(loading);
-  //   console.log(error);
-  //   return null;
-  // }
 
   const handleLikedClicked = () => {
     if (!likeActive) {
       setLikedCount(likedCount + 1);
       setLikes({
         variables: {
-          id: thoughts.id,
+          id: thoughts._id,
           likesInput: {
             likes: likedCount + 1,
+            isLiked: true,
           },
         },
       });
@@ -80,9 +62,10 @@ const ThoughtComp = (props: IThoughtComp) => {
       setLikedCount(likedCount - 1);
       setLikes({
         variables: {
-          id: thoughts.id,
+          id: thoughts._id,
           likesInput: {
             likes: likedCount - 1,
+            isLiked: false,
           },
         },
       });

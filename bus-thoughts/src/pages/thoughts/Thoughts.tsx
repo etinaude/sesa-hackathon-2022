@@ -19,103 +19,19 @@ import { useEffect, useState } from "react";
 const MESSAGE_QUERY = gql`
   query Messages {
     messages {
+      _id
       replies
       replyTo
       createdAt
       name
       content
       likes
+      isLiked
     }
   }
 `;
 
 // TEMP REPLACE
-const thoughtAPIResponse: Message[] = [
-  {
-    name: "John Doe",
-    content: "This is a test thought a",
-    createdAt: "jaksfjdlsa",
-    id: "a",
-    replies: [],
-    likes: 0,
-  },
-  {
-    name: "Jane Doe",
-    content: "Good thought",
-    id: "b",
-    likes: 1,
-    replies: [],
-    createdAt: "jaksfjdlsa",
-  },
-  {
-    name: "Doe",
-    content: "Wow cool app",
-    id: "c",
-    likes: 5,
-    replies: [],
-    createdAt: "jaksfjdlsa",
-  },
-  {
-    name: "Joe",
-    content: "Whats this random QR code?",
-    reply: "aaaa",
-    replies: [],
-    id: "d",
-    likes: 0,
-    createdAt: "jaksfjdlsa",
-  },
-  {
-    name: "Joe",
-    content: "Whats this random QR code?",
-    reply: "aaaa",
-    replies: [],
-    id: "e",
-    likes: 50,
-    createdAt: "jaksfjdlsa",
-  },
-  {
-    name: "Joe",
-    content: "Whats this random QR code?",
-    reply: "aaaa",
-    replies: [],
-    id: "f",
-    likes: 2,
-    createdAt: "jaksfjdlsa",
-  },
-  {
-    name: "Joe",
-    content: "Whats this random QR code?",
-    id: "asdfasf",
-    reply: "aaaa",
-    replies: [],
-    likes: 5,
-    createdAt: "jaksfjdlsa",
-  },
-  {
-    name: "Joe",
-    content: "Whats this random QR code?",
-    reply: "aaaa",
-    replies: [],
-    id: "h",
-    likes: 5,
-    createdAt: "jaksfjdlsa",
-  },
-];
-
-// var thoughts: any = [];
-// thoughtAPIResponse.forEach((thought) => {
-//   thoughts.push(
-//     <ThoughtComp
-//       key={thought.id}
-//       id={thought.id}
-//       name={thought.name}
-//       message={thought.message}
-//       reply={thought.reply}
-//       date={thought.date}
-//       likes={thought.likes}
-//     />
-//   );
-// });
 
 const ThoughtsPage = () => {
   const history = useHistory();
@@ -147,9 +63,13 @@ const ThoughtsPage = () => {
             <InputButton onClick={inputOnClick} />
           </section>
           <section id="thoughts" className="flex flex-col mt-1 divide-y">
-            {messages.map((thoughts, index) => {
-              return <ThoughtComp key={index} thoughts={thoughts} />;
-            })}
+            {messages.length > 0 ? (
+              messages.map((thoughts, index) => {
+                return <ThoughtComp key={index} thoughts={thoughts} />;
+              })
+            ) : (
+              <div>No thoughts found on the bus, share one now!</div>
+            )}
           </section>
         </div>
       </IonContent>
