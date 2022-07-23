@@ -6,6 +6,7 @@ import LikeIconActive from "../assets/like-icon-active.svg";
 import ReplyIconActive from "../assets/reply-icon-active.svg";
 import { useState } from "react";
 import { Message } from "../types/message";
+import { useHistory } from "react-router";
 
 const SET_LIKED = gql`
   mutation SetLiked($id: ID!, $liked: Boolean!) {
@@ -26,12 +27,14 @@ interface IThoughtComp {
 }
 
 const ThoughtComp = (props: IThoughtComp) => {
+  const history = useHistory();
   const currentDate = Date.now();
   const { thoughts } = props;
   const [hasLiked, setHasLiked] = useState(false);
   const date = new Date();
   const [likeActive, setLikeActive] = useState(false);
   const [replyActive, setReplyActive] = useState(false);
+  const [likedCount, setLikedCount] = useState(0);
 
   // const [setLiked, { data, loading, error }] = useMutation(SET_LIKED, {
   //   variables: {
@@ -51,6 +54,15 @@ const ThoughtComp = (props: IThoughtComp) => {
   //   console.log(error);
   //   return null;
   // }
+
+  const handleLikedClicked = () => {
+    if (!likeActive) {
+      setLikedCount(likedCount + 1);
+    } else {
+      setLikedCount(likedCount - 1);
+    }
+    setLikeActive(!likeActive);
+  };
 
   return (
     <div className="py-4">
@@ -72,19 +84,28 @@ const ThoughtComp = (props: IThoughtComp) => {
           id="reply"
           className="gap-1 items-center flex flex-row justify-center"
         >
-          <button onClick={() => setLikeActive(!likeActive)}>
+          <button onClick={handleLikedClicked}>
             <img
               src={likeActive ? LikeIconActive : LikeIconInactive}
               alt="like-icon"
             />
           </button>
-          <p className="text-sm">3</p>
+          <p className="text-sm w-1">{likedCount != 0 && likedCount}</p>
         </div>
         <div
           id="like"
           className="gap-1 items-center flex flex-row justify-center"
         >
-          <button onTouchStart={() => setReplyActive(true)}>
+          <button
+            onTouchStart={() => {
+              setReplyActive(true);
+              history.push({
+                pathname: "/thoughts/replies/1",
+                state: { thoughts: thoughts },
+              });
+              window.location.reload();
+            }}
+          >
             <img
               src={replyActive ? ReplyIconActive : ReplyIconInactive}
               alt="reply-icon"
