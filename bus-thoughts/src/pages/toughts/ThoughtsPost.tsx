@@ -1,12 +1,4 @@
-import {
-  IonButton,
-  IonButtons,
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonTitle,
-  IonToolbar,
-} from "@ionic/react";
+import { IonContent, IonPage } from "@ionic/react";
 import { useState } from "react";
 import Fab from "../../components/Fab";
 import InputComp from "../../components/InputComp";
