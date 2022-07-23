@@ -49,10 +49,16 @@ const InputComp: React.FC<ContainerProps> = () => {
           value={message}
           onChange={(event) => setMessage(event.target.value)}
         />
+        <IonButton
+          className="ion-float-right"
+          onClick={() => {
+            addMessage({ variables: { message } });
+            setMessage("");
+          }}
+        >
+          Add Message
+        </IonButton>
       </div>
-      <IonButton onClick={() => addMessage({ variables: { message } })}>
-        Add Message
-      </IonButton>
     </>
   );
 };
