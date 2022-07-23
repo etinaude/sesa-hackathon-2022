@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prebuild": "rimraf dist",
+    "build": "tsc",
+    "start": "ts-node ./app.ts",
+    "test": "echo no backend tests"
   },
   "author": "",
   "license": "ISC",
