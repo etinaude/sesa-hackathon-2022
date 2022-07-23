@@ -12,6 +12,9 @@ import ThoughtComp from "../components/ThoughtComp";
 import { Topic } from "../components/Topic";
 import { Message } from "../types/message";
 import "./Tab3.css";
+import { gql, useQuery } from "@apollo/client";
+import { useEffect, useState } from "react";
+
 // TEMP REPLACE
 const thoughtAPIResponse: Message[] = [
   {
@@ -93,8 +96,35 @@ const thoughtAPIResponse: Message[] = [
   },
 ];
 
+const TOPIC_MESSAGE_QUERY = gql`
+  query TopicMessages {
+    topicMessages {
+      _id
+      name
+      content
+      likes
+      isLiked
+      replies
+      replyTo
+      createdAt
+    }
+  }
+`;
+
 const Tab3: React.FC = () => {
   const history = useHistory();
+  const { data } = useQuery(TOPIC_MESSAGE_QUERY);
+  console.log("data: ", data);
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    if (data != undefined) {
+      const { topicMessages } = data;
+      setMessages(topicMessages);
+    }
+  }, [data]);
+
+  console.log("messages: ", messages);
 
   const inputOnClick = () => {
     history.push("/thoughts/post");
@@ -110,9 +140,13 @@ const Tab3: React.FC = () => {
           <Topic />
           <InputButton onClick={inputOnClick} />
           <div className=" flex flex-col divide-y">
-            {thoughtAPIResponse.map((thoughts, index) => {
-              return <ThoughtComp key={index} thoughts={thoughts} />;
-            })}
+            {messages.length > 0 ? (
+              messages.map((thoughts, index) => {
+                return <ThoughtComp key={index} thoughts={thoughts} />;
+              })
+            ) : (
+              <div>No thoughts found on the bus, share one now!</div>
+            )}
           </div>
         </div>
       </IonContent>

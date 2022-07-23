@@ -36,10 +36,8 @@ interface IThoughtComp {
 
 const ThoughtComp = (props: IThoughtComp) => {
   const history = useHistory();
-  const currentDate = Date.now();
   const { thoughts } = props;
   const [hasLiked, setHasLiked] = useState(false);
-  const date = new Date();
   const [likeActive, setLikeActive] = useState(thoughts.isLiked);
   const [replyActive, setReplyActive] = useState(false);
   const [likedCount, setLikedCount] = useState(thoughts.likes);
@@ -79,7 +77,9 @@ const ThoughtComp = (props: IThoughtComp) => {
         <div id="avatar" className="w-12 h-12 rounded-full bg-slate-500"></div>
         <div id="info" className="flex flex-col">
           <p className="text-lg font-bold">{thoughts.name}</p>
-          <p className="text-sm">{`${date.toLocaleString()}`}</p>
+          <p className="text-sm">
+            {new Date(thoughts.createdAt).toLocaleString()}
+          </p>
         </div>
       </section>
       <section id="content" className="mt-1 px-1">
