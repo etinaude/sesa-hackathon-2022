@@ -88,7 +88,7 @@ const Tab1: React.FC = () => {
           </IonToolbar>
         </IonHeader>
 
-        <div className="thought-container">{thoughts}</div>
+        <div className="px-8 flex flex-col divide-y">{thoughts}</div>
 
         <InputComp></InputComp>
 
