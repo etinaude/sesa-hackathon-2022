@@ -25,10 +25,13 @@ input MessageLikesInput {
 
 type Query {
     messages: [Message]
+    topicMessages: [Message]
 }
 
 type Mutation {
     createMessage(messageInput: MessageInput): Message!
     setLikes(ID: ID!, likesInput: MessageLikesInput): Message!
+    createTopicMessage(topicMessageInput: MessageInput): Message!
+    setTopicLikes(ID: ID!, likesInput: MessageLikesInput): Message!
 }
 `
