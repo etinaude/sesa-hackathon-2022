@@ -5,6 +5,7 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
+import Fab from "../components/Fab";
 import ThoughtComp from "../components/ThoughtComp";
 import { Topic } from "../components/Topic";
 import { Message } from "../types/message";
@@ -96,6 +97,7 @@ const Tab3: React.FC = () => {
           })}
         </div>
       </IonContent>
+      <Fab />
     </IonPage>
   );
 };
