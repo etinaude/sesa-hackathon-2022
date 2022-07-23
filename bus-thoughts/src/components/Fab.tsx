@@ -1,5 +1,5 @@
 import "./Fab.scss";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 // import { Link } from "@react-navigation/native";
 
@@ -7,7 +7,7 @@ interface ContainerProps {}
 
 const Fab: React.FC<ContainerProps> = () => {
   // const linkTo = useLinkTo();
-  const navigate = useNavigate();
+  const navigate = useHistory();
   return (
     <div className="fab-container">
       <div className="fab">
