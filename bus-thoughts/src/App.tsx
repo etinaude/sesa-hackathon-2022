@@ -25,9 +25,7 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 import "./index.css";
-import ThoughtsPost from "./pages/toughts/ThoughtsPost";
 // import "./theme/variables.css";
-import "./index.css";
 
 setupIonicReact();
 
