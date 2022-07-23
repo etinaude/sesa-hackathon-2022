@@ -1,10 +1,4 @@
-import {
-  BrowserRouter,
-  Navigate,
-  Route,
-  Router,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter, Redirect, Route } from "react-router-dom";
 import {
   IonApp,
   IonIcon,
@@ -48,14 +42,21 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonRouterOutlet>
         <BrowserRouter>
-          <Routes>
-            <Route path="/tab1" element={<Tab1 />} />
-            <Route path="/tab2" element={<Tab2 />} />
-            <Route path="/tab3" element={<Tab3 />} />
-            <Route path="/my-thoughts" element={<MyThoughts />} />
-
-            <Route path="/" element={<Navigate replace to="/tab1" />} />
-          </Routes>
+          <Route exact path="/tab1">
+            <Tab1 />
+          </Route>
+          <Route exact path="/tab2">
+            <Tab2 />
+          </Route>
+          <Route exact path="/tab3">
+            <Tab3 />
+          </Route>
+          <Route exact path="/my-thoughts">
+            <MyThoughts />
+          </Route>
+          <Route path="/">
+            <Redirect exact to="/tab1" />
+          </Route>
         </BrowserRouter>
       </IonRouterOutlet>
     </IonReactRouter>
