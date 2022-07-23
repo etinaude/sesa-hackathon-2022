@@ -25,6 +25,7 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 // import "./theme/variables.css";
 import "./index.css";
+import Replies from "./pages/replies/Replies";
 // import "./theme/variables.css";
 
 setupIonicReact();
@@ -48,6 +49,9 @@ const App: React.FC = () => (
           </Route>
           <Route exact path="/">
             <Redirect exact to="/thoughts" />
+          </Route>
+          <Route path="/thoughts/replies/:id">
+            <Replies />
           </Route>
         </BrowserRouter>
       </IonRouterOutlet>

@@ -18,11 +18,11 @@ const Fab: React.FC<ContainerProps> = () => {
         <div className="icon">☰</div>
       </div>
       <div className="menu">
-        <div className="menu-item" onTouchEnd={() => redirect("/thoughts")}>
-          Daily Thought
+        <div className="menu-item" onTouchEnd={() => redirect("/tab2")}>
+          Draw together
         </div>
-        <div className="menu-item" onTouchEnd={() => history.push("/tab2")}>
-          Canvas
+        <div className="menu-item" onTouchEnd={() => history.push("/tab3")}>
+          Topic of the day
         </div>
         <div className="menu-item" onTouchEnd={() => history.push("/tab3")}>
           Topic of the day
