@@ -1,8 +1,8 @@
 import { BrowserRouter, Redirect, Route } from "react-router-dom";
 import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import ThoughtsPage from "./pages/toughts/Thoughts";
-import ThoughtsPost from "./pages/toughts/ThoughtsPost";
+import ThoughtsPage from "./pages/thoughts/Thoughts";
+import ThoughtsPost from "./pages/thoughts/ThoughtsPost";
 import Tab2 from "./pages/Tab2";
 import Tab3 from "./pages/Tab3";
 import Tab4 from "./pages/Tab4";

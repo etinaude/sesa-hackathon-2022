@@ -8,14 +8,22 @@ import { useState } from "react";
 import { Message } from "../types/message";
 import { useHistory } from "react-router";
 
-const SET_LIKED = gql`
-  mutation SetLiked($id: ID!, $liked: Boolean!) {
-    setLiked(id: $id, liked: $liked) {
-      id
+// const SET_LIKED = gql`
+//   mutation SetLiked($id: ID!, $liked: Boolean!) {
+//     setLiked(id: $id, liked: $liked) {
+//       id
+//       likes
+//       message
+//       date
+//       reply
+//     }
+//   }
+// `;
+
+const SET_LIKES = gql`
+  mutation SetLikes($id: ID!, $likesInput: MessageLikesInput) {
+    setLikes(ID: $id, likesInput: $likesInput) {
       likes
-      message
-      date
-      reply
     }
   }
 `;
@@ -35,6 +43,8 @@ const ThoughtComp = (props: IThoughtComp) => {
   const [likeActive, setLikeActive] = useState(false);
   const [replyActive, setReplyActive] = useState(false);
   const [likedCount, setLikedCount] = useState(0);
+
+  const [setLikes, { data, loading, error }] = useMutation(SET_LIKES);
 
   // const [setLiked, { data, loading, error }] = useMutation(SET_LIKED, {
   //   variables: {
@@ -58,8 +68,24 @@ const ThoughtComp = (props: IThoughtComp) => {
   const handleLikedClicked = () => {
     if (!likeActive) {
       setLikedCount(likedCount + 1);
+      setLikes({
+        variables: {
+          id: thoughts.id,
+          likesInput: {
+            likes: likedCount + 1,
+          },
+        },
+      });
     } else {
       setLikedCount(likedCount - 1);
+      setLikes({
+        variables: {
+          id: thoughts.id,
+          likesInput: {
+            likes: likedCount - 1,
+          },
+        },
+      });
     }
     setLikeActive(!likeActive);
   };
@@ -74,7 +100,7 @@ const ThoughtComp = (props: IThoughtComp) => {
         </div>
       </section>
       <section id="content" className="mt-1 px-1">
-        <p>{thoughts.message}</p>
+        <p>{thoughts.content}</p>
       </section>
       <section
         id="footer"

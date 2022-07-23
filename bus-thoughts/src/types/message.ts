@@ -1,8 +1,9 @@
 export interface Message {
   id: string;
   name: string;
-  message: string;
-  date: string;
+  content: string;
+  createdAt: string;
   reply?: string;
+  replies: string[];
   likes: number;
 }

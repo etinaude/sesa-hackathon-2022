@@ -8,7 +8,7 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "tsc",
-    "start": "node dist/app",
+    "start": "ts-node ./app.ts",
     "start:dev": "nodemon ./app.ts",
     "start:prod": "node dist/app",
     "test": "echo no tests backend"
