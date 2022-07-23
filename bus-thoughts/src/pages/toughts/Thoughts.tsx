@@ -6,13 +6,13 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import InputComp from "../components/InputComp";
-import ThoughtComp from "../components/ThoughtComp";
-import Fab from "../components/Fab";
-import "./Tab1.css";
-import { Message } from "../types/message";
-import InputButton from "../components/InputButton";
+import "./Thoughts.css";
+import InputComp from "../../components/InputComp";
+import ThoughtComp from "../../components/ThoughtComp";
+import Fab from "../../components/Fab";
+import InputButton from "../../components/InputButton";
 import { Redirect, useHistory } from "react-router";
+import { Message } from "../../types/message";
 
 // TEMP REPLACE
 const thoughtAPIResponse: Message[] = [
@@ -94,7 +94,7 @@ thoughtAPIResponse.forEach((thought) => {
   );
 });
 
-const Tab1 = () => {
+const ThoughtsPage = () => {
   const history = useHistory();
   const inputOnClick = () => {
     history.push("/thoughts/post");
@@ -120,4 +120,4 @@ const Tab1 = () => {
   );
 };
 
-export default Tab1;
+export default ThoughtsPage;
