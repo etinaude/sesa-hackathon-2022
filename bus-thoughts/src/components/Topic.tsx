@@ -10,7 +10,7 @@ export const Topic = () => {
     month: "short",
     day: "numeric",
   });
-  console.log(tableTopic);
+  //   console.log(tableTopic);
   return (
     <div>
       <div>{date}</div>
