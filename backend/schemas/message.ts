@@ -37,11 +37,11 @@ export const messageResolver = {
       console.log(args);
       messageData.push(args);
     },
-    setLiked: (parent, { id, liked }) => {
+    setLiked: (parent, args) => {
       console.log("hit endpoint");
-      const index = messageData.findIndex((x) => x.id === id);
+      const index = messageData.findIndex((x) => x.id === "123");
 
-      if (liked) {
+      if (args.liked) {
         messageData[index].likes += 1;
       } else {
         messageData[index].likes -= 1;

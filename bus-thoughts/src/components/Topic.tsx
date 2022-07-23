@@ -1,5 +1,7 @@
+import {tableTopicGenerator} from "table-topic-generator"
 import React from "react";
-const tableTopicGenerator = require("table-topic-generator");
+
+
 const tableTopic = tableTopicGenerator(1, "Summer", "Vacation");
 
 const array = tableTopic.Table_Topics;
