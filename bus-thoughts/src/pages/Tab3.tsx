@@ -6,6 +6,7 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import ExploreContainer from "../components/ExploreContainer";
+import Fab from "../components/Fab";
 import InputComp from "../components/InputComp";
 import ThoughtComp from "../components/ThoughtComp";
 import { Topic } from "../components/Topic";
@@ -108,6 +109,7 @@ const Tab3: React.FC = () => {
         {/* TODO <InputButton/> */}
         <div className="px-8 flex flex-col divide-y">{thoughts}</div>
       </IonContent>
+      <Fab />
     </IonPage>
   );
 };
