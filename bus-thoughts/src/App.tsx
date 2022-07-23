@@ -1,7 +1,8 @@
 import { BrowserRouter, Redirect, Route } from "react-router-dom";
 import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import Tab1 from "./pages/Tab1";
+import ThoughtsPage from "./pages/toughts/Thoughts";
+import ThoughtsPost from "./pages/toughts/ThoughtsPost";
 import Tab2 from "./pages/Tab2";
 import Tab3 from "./pages/Tab3";
 
@@ -22,9 +23,9 @@ import "@ionic/react/css/flex-utils.css";
 import "@ionic/react/css/display.css";
 
 /* Theme variables */
-import "./theme/variables.css";
-import MyThoughts from "./pages/MyThoughts";
+// import "./theme/variables.css";
 import "./index.css";
+// import "./theme/variables.css";
 
 setupIonicReact();
 
@@ -33,8 +34,8 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonRouterOutlet>
         <BrowserRouter>
-          <Route exact path="/tab1">
-            <Tab1 />
+          <Route exact path="/thoughts">
+            <ThoughtsPage />
           </Route>
           <Route exact path="/tab2">
             <Tab2 />
@@ -42,15 +43,11 @@ const App: React.FC = () => (
           <Route exact path="/tab3">
             <Tab3 />
           </Route>
-          <Route exact path="/">
-            <Redirect exact to="/tab1" />
-          </Route>
-
-          <Route exact path="/my-thoughts">
-            <MyThoughts />
+          <Route exact path="/thoughts/post">
+            <ThoughtsPost />
           </Route>
           <Route exact path="/">
-            <Redirect to="/tab1" />
+            <Redirect exact to="/thoughts" />
           </Route>
         </BrowserRouter>
       </IonRouterOutlet>

@@ -1,7 +1,9 @@
 import "./ThoughtComp.css";
-import LikeIcon from "../assets/like-icon.svg";
-import ReplyIcon from "../assets/reply-icon.svg";
 import { useMutation, gql } from "@apollo/client";
+import LikeIconInactive from "../assets/like-icon-inactive.svg";
+import ReplyIconInactive from "../assets/reply-icon-inactive.svg";
+import LikeIconActive from "../assets/like-icon-active.svg";
+import ReplyIconActive from "../assets/reply-icon-active.svg";
 import { useState } from "react";
 import { Message } from "../types/message";
 
@@ -19,41 +21,76 @@ const SET_LIKED = gql`
 
 type ContainerProps = Message;
 
-const ThoughtComp: React.FC<ContainerProps> = ({ id: key, name, message }) => {
+interface IThoughtComp {
+  thoughts: Message;
+}
+
+const ThoughtComp = (props: IThoughtComp) => {
   const currentDate = Date.now();
+  const { thoughts } = props;
   const [hasLiked, setHasLiked] = useState(false);
+  const date = new Date();
+  const [likeActive, setLikeActive] = useState(false);
+  const [replyActive, setReplyActive] = useState(false);
 
-  const [setLiked, { data, loading, error }] = useMutation(SET_LIKED);
+  // const [setLiked, { data, loading, error }] = useMutation(SET_LIKED, {
+  //   variables: {
+  //     id: key,
+  //     liked: !hasLiked,
+  //   },
+  // });
 
-  const clickedLike = () => {
-    console.log("hasLiked: " + !hasLiked);
-    setLiked({ variables: { id: key, liked: !hasLiked } });
-  };
+  // const clickedLike = () => {
+  //   console.log("hasLiked: " + !hasLiked);
+  //   setHasLiked(!hasLiked);
+  //   setLiked();
+  // };
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :</p>;
+  // if (loading || error) {
+  //   console.log(loading);
+  //   console.log(error);
+  //   return null;
+  // }
 
   return (
     <div className="py-4">
-      {/* <strong>{name}</strong>
-      <p>{thought}</p> */}
       <section id="header" className="flex flex-row gap-3">
         <div id="avatar" className="w-12 h-12 rounded-full bg-slate-500"></div>
         <div id="info" className="flex flex-col">
-          <p className="text-lg font-bold">{name}</p>
-          <p className="text-sm">{`${currentDate.toLocaleString()}`}</p>
+          <p className="text-lg font-bold">{thoughts.name}</p>
+          <p className="text-sm">{`${date.toLocaleString()}`}</p>
         </div>
       </section>
       <section id="content" className="mt-1 px-1">
-        <p>{message}</p>
+        <p>{thoughts.message}</p>
       </section>
-      <section id="footer" className="flex flex-row gap-3 mt-2 px-1">
-        <div id="like" className="flex flex-row justify-center">
-          <img src={LikeIcon} alt="like-icon" onClick={() => clickedLike()} />
-          <p>count</p>
+      <section
+        id="footer"
+        className="items-center flex flex-row gap-3 mt-2 px-1"
+      >
+        <div
+          id="reply"
+          className="gap-1 items-center flex flex-row justify-center"
+        >
+          <button onClick={() => setLikeActive(!likeActive)}>
+            <img
+              src={likeActive ? LikeIconActive : LikeIconInactive}
+              alt="like-icon"
+            />
+          </button>
+          <p className="text-sm">3</p>
         </div>
-        <div id="reply">
-          <img src={ReplyIcon} alt="reply-icon" />
+        <div
+          id="like"
+          className="gap-1 items-center flex flex-row justify-center"
+        >
+          <button onTouchStart={() => setReplyActive(true)}>
+            <img
+              src={replyActive ? ReplyIconActive : ReplyIconInactive}
+              alt="reply-icon"
+            />
+          </button>
+          <p className="text-sm">3</p>
         </div>
       </section>
     </div>
