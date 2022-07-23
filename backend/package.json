@@ -5,6 +5,14 @@
   "main": "index.js",
   "author": "",
   "license": "ISC",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "tsc",
+    "start": "node dist/app",
+    "start:dev": "nodemon ./app.ts",
+    "start:prod": "node dist/app",
+    "test": "echo no tests backend"
+  },
   "devDependencies": {
     "typescript": "^4.7.4"
   },

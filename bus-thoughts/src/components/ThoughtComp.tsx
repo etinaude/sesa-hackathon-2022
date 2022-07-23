@@ -1,15 +1,49 @@
 import "./ThoughtComp.css";
 import LikeIcon from "../assets/like-icon.svg";
 import ReplyIcon from "../assets/reply-icon.svg";
+import { useMutation, gql } from "@apollo/client";
+import { useState } from "react";
+import { Message } from "../types/message"
 
-interface ContainerProps {
-  name: string;
-  thought: string;
-  ReplyTo?: string;
-}
+const SET_LIKED = gql`
+  mutation SetLiked($id: ID!, $liked: Boolean!) {
+    setLiked(id: $id, liked: $liked) {
+      id
+      likes
+      message
+      date
+      reply
+    }
+  }
+`;
 
-const ThoughtComp: React.FC<ContainerProps> = ({ name, thought, ReplyTo }) => {
-  const currentDate = new Date();
+type ContainerProps = Message
+
+const ThoughtComp: React.FC<ContainerProps> = ({
+  id: key,
+  name,
+  message,
+}) => {
+  const currentDate = Date.now()
+  const [hasLiked, setHasLiked] = useState(false);
+  
+  const [setLiked, { data, loading, error }] = useMutation(SET_LIKED, {variables: {
+    id: key,
+    liked: !hasLiked
+  }});
+  
+  const clickedLike = () => {
+    console.log("hasLiked: " + !hasLiked)
+    setHasLiked(!hasLiked);
+    setLiked();
+  };
+
+  if (loading || error) {
+    console.log(loading);
+    console.log(error);
+    return null;
+  }
+
   return (
     <div className="py-4">
       {/* <strong>{name}</strong>
@@ -22,14 +56,14 @@ const ThoughtComp: React.FC<ContainerProps> = ({ name, thought, ReplyTo }) => {
         </div>
       </section>
       <section id="content" className="mt-1 px-1">
-        <p>{thought}</p>
+        <p>{message}</p>
       </section>
       <section id="footer" className="flex flex-row gap-3 mt-2 px-1">
-        <div id="reply" className="flex flex-row justify-center">
-          <img src={LikeIcon} alt="like-icon" />
+        <div id="like" className="flex flex-row justify-center">
+          <img src={LikeIcon} alt="like-icon" onClick={() => clickedLike()}/>
           <p>count</p>
         </div>
-        <div id="like">
+        <div id="reply">
           <img src={ReplyIcon} alt="reply-icon" />
         </div>
       </section>

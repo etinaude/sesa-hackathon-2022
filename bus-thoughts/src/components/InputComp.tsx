@@ -31,9 +31,9 @@ const ADD_MESSAGE = gql`
 interface ContainerProps {}
 
 const InputComp: React.FC<ContainerProps> = () => {
+  const [addMessage, { data, loading, error }] = useMutation(ADD_MESSAGE);
   const [message, setMessage] = useState("");
 
-  const [addMessage, { data, loading, error }] = useMutation(ADD_MESSAGE);
   if (loading || error) {
     console.log(loading);
     console.log(error);
