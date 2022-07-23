@@ -13,6 +13,7 @@ export const messageResolver = {
                 content: content,
                 createdAt: new Date().toISOString(),
                 likes: 0,
+                isLiked: false,
                 replies: [],
                 replyTo: null
             });
@@ -24,8 +25,8 @@ export const messageResolver = {
                 ...res._doc
             }
         },
-        async setLikes(_, { ID, likesInput: { likes } }) {
-            const updatedMessage = (await Message.updateOne({ _id: ID }, { likes: likes })).modifiedCount;
+        async setLikes(_, { ID, likesInput: { likes, isLiked } }) {
+            const updatedMessage = (await Message.updateOne({ _id: ID }, { likes: likes, isLiked: isLiked })).modifiedCount;
             return updatedMessage;
         }
     }

@@ -3,10 +3,11 @@ import { gql } from "apollo-server";
 export const messageTypeDef = gql`
 
 type Message {
-    id: ID
+    _id: ID
     name: String
     content: String
     likes: Int
+    isLiked: Boolean
     replies: [String]
     replyTo: String
     createdAt: String
@@ -19,6 +20,7 @@ input MessageInput {
 
 input MessageLikesInput {
     likes: Int
+    isLiked: Boolean
 }
 
 type Query {
