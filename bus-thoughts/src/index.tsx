@@ -6,7 +6,6 @@ import reportWebVitals from "./reportWebVitals";
 import {
   ApolloClient,
   ApolloProvider,
-  createHttpLink,
   InMemoryCache,
 } from "@apollo/client";
 

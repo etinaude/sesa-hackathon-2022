@@ -24,10 +24,11 @@ export const messageResolver = {
     messages: () => messageData,
   },
   Mutation: {
-    addMessage: () => {
-      console.log("called add message!")
+    addMessage: (parent, args) => {
+      console.log(args)
+      messageData.push(args)
     }
-  }
+  },
 };
 
 export const messageData = [
