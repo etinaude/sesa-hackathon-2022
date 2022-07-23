@@ -1,4 +1,5 @@
 import { IonContent, IonPage } from "@ionic/react";
+import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import Fab from "../../components/Fab";
 import InputComp from "../../components/InputComp";
@@ -15,22 +16,49 @@ const CREATE_MESSAGE = gql`
   }
 `;
 
+const CREATE_TOPIC_MESSAGE = gql`
+  mutation CreateTopicMessage($topicMessageInput: MessageInput) {
+    createTopicMessage(topicMessageInput: $topicMessageInput) {
+      name
+      content
+    }
+  }
+`;
+
 const ThoughtsPost: React.FC = () => {
+  const location = useLocation();
+  const state: any = location.state;
   const [postData, setPostData] = useState("");
-  const [createMessage, { data, loading, error }] = useMutation(CREATE_MESSAGE);
+  const [createMessage] = useMutation(CREATE_MESSAGE);
+  const [createTopicMessage] = useMutation(CREATE_TOPIC_MESSAGE);
+
   const hisotry = useHistory();
 
   const handleButtonClick = () => {
     console.log(postData);
-    createMessage({
-      variables: {
-        messageInput: {
-          name: "Carlie",
-          content: postData,
+
+    if (state.isTopic) {
+      createTopicMessage({
+        variables: {
+          topicMessageInput: {
+            name: "Carlie",
+            content: postData,
+          },
         },
-      },
-    });
-    hisotry.push("/thoughts");
+      });
+      hisotry.push("/tab3");
+    } else {
+      createMessage({
+        variables: {
+          messageInput: {
+            name: "Amy",
+            content: postData,
+          },
+        },
+      });
+      hisotry.push("/thoughts");
+    }
+
     window.location.reload();
   };
 

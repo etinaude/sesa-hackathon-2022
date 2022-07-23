@@ -49,7 +49,12 @@ const ThoughtsPage = () => {
   console.log("messages: ", messages);
 
   const inputOnClick = () => {
-    history.push("/thoughts/post");
+    history.push({
+      pathname: "/post",
+      state: {
+        isTopic: false,
+      },
+    });
     window.location.reload();
   };
   return (
