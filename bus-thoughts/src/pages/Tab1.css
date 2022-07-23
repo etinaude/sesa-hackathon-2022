@@ -1,3 +1,10 @@
 .thought-container {
   padding: 20px;
 }
+
+.input-bar {
+  height: 8%;
+}
+.input-bar textarea{
+  height: 100%;
+}
