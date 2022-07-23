@@ -1,8 +1,8 @@
 ion-toolbar {
     --padding-top: 30px;
     --padding-bottom: 10px;
-    --padding-end: 20px;
-    --padding-start: 20px;
+    --padding-end: 30px;
+    --padding-start: 30px;
 }
 #share-button {
     --background: #2C384C;
