@@ -41,31 +41,9 @@ const InputComp: React.FC<ContainerProps> = () => {
   }
 
   return (
-<<<<<<< HEAD
     <div className="input-bar">
       <textarea placeholder="What are you thinking now?" />
     </div>
-=======
-    <>
-      <div className="input-bar">
-        <input
-          type="text"
-          placeholder="Enter a thought..."
-          value={message}
-          onChange={(event) => setMessage(event.target.value)}
-        />
-        <IonButton
-          className="ion-float-right"
-          onClick={() => {
-            addMessage({ variables: { message } });
-            setMessage("");
-          }}
-        >
-          Add Message
-        </IonButton>
-      </div>
-    </>
->>>>>>> main
   );
 };
 
