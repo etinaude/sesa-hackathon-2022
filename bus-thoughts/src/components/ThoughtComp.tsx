@@ -21,43 +21,48 @@ const SET_LIKED = gql`
 
 type ContainerProps = Message;
 
-const ThoughtComp = (key: any, name: any, message: any) => {
+interface IThoughtComp {
+  thoughts: Message;
+}
+
+const ThoughtComp = (props: IThoughtComp) => {
   const currentDate = Date.now();
+  const { thoughts } = props;
   const [hasLiked, setHasLiked] = useState(false);
   const date = new Date();
   const [likeActive, setLikeActive] = useState(false);
   const [replyActive, setReplyActive] = useState(false);
 
-  const [setLiked, { data, loading, error }] = useMutation(SET_LIKED, {
-    variables: {
-      id: key,
-      liked: !hasLiked,
-    },
-  });
+  // const [setLiked, { data, loading, error }] = useMutation(SET_LIKED, {
+  //   variables: {
+  //     id: key,
+  //     liked: !hasLiked,
+  //   },
+  // });
 
-  const clickedLike = () => {
-    console.log("hasLiked: " + !hasLiked);
-    setHasLiked(!hasLiked);
-    setLiked();
-  };
+  // const clickedLike = () => {
+  //   console.log("hasLiked: " + !hasLiked);
+  //   setHasLiked(!hasLiked);
+  //   setLiked();
+  // };
 
-  if (loading || error) {
-    console.log(loading);
-    console.log(error);
-    return null;
-  }
+  // if (loading || error) {
+  //   console.log(loading);
+  //   console.log(error);
+  //   return null;
+  // }
 
   return (
     <div className="py-4">
       <section id="header" className="flex flex-row gap-3">
         <div id="avatar" className="w-12 h-12 rounded-full bg-slate-500"></div>
         <div id="info" className="flex flex-col">
-          <p className="text-lg font-bold">{name}</p>
+          <p className="text-lg font-bold">{thoughts.name}</p>
           <p className="text-sm">{`${date.toLocaleString()}`}</p>
         </div>
       </section>
       <section id="content" className="mt-1 px-1">
-        <p>{message}</p>
+        <p>{thoughts.message}</p>
       </section>
       <section
         id="footer"

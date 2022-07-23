@@ -79,20 +79,20 @@ const thoughtAPIResponse: Message[] = [
   },
 ];
 
-var thoughts: any = [];
-thoughtAPIResponse.forEach((thought) => {
-  thoughts.push(
-    <ThoughtComp
-      key={thought.id}
-      id={thought.id}
-      name={thought.name}
-      message={thought.message}
-      reply={thought.reply}
-      date={thought.date}
-      likes={thought.likes}
-    />
-  );
-});
+// var thoughts: any = [];
+// thoughtAPIResponse.forEach((thought) => {
+//   thoughts.push(
+//     <ThoughtComp
+//       key={thought.id}
+//       id={thought.id}
+//       name={thought.name}
+//       message={thought.message}
+//       reply={thought.reply}
+//       date={thought.date}
+//       likes={thought.likes}
+//     />
+//   );
+// });
 
 const ThoughtsPage = () => {
   const history = useHistory();
@@ -111,7 +111,9 @@ const ThoughtsPage = () => {
             <InputButton onClick={inputOnClick} />
           </section>
           <section id="thoughts" className="flex flex-col mt-1 divide-y">
-            {thoughts}
+            {thoughtAPIResponse.map((thoughts, index) => {
+              return <ThoughtComp key={index} thoughts={thoughts} />;
+            })}
           </section>
         </div>
       </IonContent>
