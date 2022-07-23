@@ -24,6 +24,9 @@ type ContainerProps = Message;
 const ThoughtComp = (key: any, name: any, message: any) => {
   const currentDate = Date.now();
   const [hasLiked, setHasLiked] = useState(false);
+  const date = new Date();
+  const [likeActive, setLikeActive] = useState(false);
+  const [replyActive, setReplyActive] = useState(false);
 
   const [setLiked, { data, loading, error }] = useMutation(SET_LIKED, {
     variables: {
@@ -44,9 +47,6 @@ const ThoughtComp = (key: any, name: any, message: any) => {
     return null;
   }
 
-  const date = new Date();
-  const [likeActive, setLikeActive] = useState(false);
-  const [replyActive, setReplyActive] = useState(false);
   return (
     <div className="py-4">
       <section id="header" className="flex flex-row gap-3">
