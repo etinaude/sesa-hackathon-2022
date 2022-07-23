@@ -27,6 +27,9 @@ const Fab: React.FC<ContainerProps> = () => {
         <div className="menu-item" onTouchEnd={() => redirect("/tab2")}>
           Draw Together
         </div>
+        <div className="menu-item" onTouchEnd={() => redirect("/tab4")}>
+          Speedy Texting
+        </div>
       </div>
     </div>
   );

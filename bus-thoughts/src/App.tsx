@@ -5,6 +5,7 @@ import ThoughtsPage from "./pages/toughts/Thoughts";
 import ThoughtsPost from "./pages/toughts/ThoughtsPost";
 import Tab2 from "./pages/Tab2";
 import Tab3 from "./pages/Tab3";
+import Tab4 from "./pages/Tab4";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -43,6 +44,9 @@ const App: React.FC = () => (
           </Route>
           <Route exact path="/tab3">
             <Tab3 />
+          </Route>
+          <Route exact path="/tab4">
+            <Tab4 />
           </Route>
           <Route exact path="/thoughts/post">
             <ThoughtsPost />
