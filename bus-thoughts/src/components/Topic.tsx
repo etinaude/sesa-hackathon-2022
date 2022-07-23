@@ -1,9 +1,8 @@
 import React from "react";
-// const jsfakeit = require("jsfakeit");
-// const tableTopicGenerator = require("table-topic-generator");
-// const tableTopic = tableTopicGenerator(1, "Summer", "Vacation");
+const tableTopicGenerator = require("table-topic-generator");
+const tableTopic = tableTopicGenerator(1, "Summer", "Vacation");
 
-// const array = tableTopic.Table_Topics;
+const array = tableTopic.Table_Topics;
 export const Topic = () => {
   //get today date
   let date = new Date().toLocaleDateString("en-us", {
@@ -11,12 +10,11 @@ export const Topic = () => {
     month: "short",
     day: "numeric",
   });
-  //   let topic = jsfakeit.bS();
-  //   console.log(tableTopic);
+  console.log(tableTopic);
   return (
     <div>
       <div>{date}</div>
-      {/* <div>{array[0]}</div> */}
+      <div>{array[0]}</div>
     </div>
   );
 };
