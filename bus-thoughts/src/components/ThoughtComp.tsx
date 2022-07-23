@@ -19,23 +19,21 @@ const SET_LIKED = gql`
   }
 `;
 
-type ContainerProps = Message
+type ContainerProps = Message;
 
-const ThoughtComp: React.FC<ContainerProps> = ({
-  id: key,
-  name,
-  message,
-}) => {
-  const currentDate = Date.now()
+const ThoughtComp = (key: any, name: any, message: any) => {
+  const currentDate = Date.now();
   const [hasLiked, setHasLiked] = useState(false);
-  
-  const [setLiked, { data, loading, error }] = useMutation(SET_LIKED, {variables: {
-    id: key,
-    liked: !hasLiked
-  }});
-  
+
+  const [setLiked, { data, loading, error }] = useMutation(SET_LIKED, {
+    variables: {
+      id: key,
+      liked: !hasLiked,
+    },
+  });
+
   const clickedLike = () => {
-    console.log("hasLiked: " + !hasLiked)
+    console.log("hasLiked: " + !hasLiked);
     setHasLiked(!hasLiked);
     setLiked();
   };
@@ -46,8 +44,7 @@ const ThoughtComp: React.FC<ContainerProps> = ({
     return null;
   }
 
-const ThoughtComp: React.FC<ContainerProps> = ({ name, thought, ReplyTo }) => {
-  const currentDate = new Date();
+  const date = new Date();
   const [likeActive, setLikeActive] = useState(false);
   const [replyActive, setReplyActive] = useState(false);
   return (
@@ -56,7 +53,7 @@ const ThoughtComp: React.FC<ContainerProps> = ({ name, thought, ReplyTo }) => {
         <div id="avatar" className="w-12 h-12 rounded-full bg-slate-500"></div>
         <div id="info" className="flex flex-col">
           <p className="text-lg font-bold">{name}</p>
-          <p className="text-sm">{`${currentDate.toLocaleString()}`}</p>
+          <p className="text-sm">{`${date.toLocaleString()}`}</p>
         </div>
       </section>
       <section id="content" className="mt-1 px-1">
