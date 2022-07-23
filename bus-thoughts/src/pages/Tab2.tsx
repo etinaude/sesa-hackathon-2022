@@ -8,7 +8,7 @@ import {
 import "./Tab2.scss";
 import { ReactSketchCanvas, ReactSketchCanvasRef } from "react-sketch-canvas";
 import Fab from "../components/Fab";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BlockPicker } from "react-color";
 
 const styles = {
@@ -19,12 +19,22 @@ const styles = {
 const Tab2: React.FC = () => {
   const [pickedColor, pickColor] = useState("#ff7788");
   const [strokeWidth, setStrokeWidth] = useState(2);
-
   const [isColorOpen, setColorOpen] = useState(false);
-
+  const [updateTimeStamp, updateUpdateTime] = useState(0);
   const [paths, setPaths] = React.useState<CanvasPath[]>([]);
 
   const canvasRef = React.createRef<ReactSketchCanvasRef>();
+
+  const updateServer = () => {
+    if (Date.now() - updateTimeStamp > 5000) {
+      console.log("updated");
+      updateUpdateTime(Date.now());
+
+      // ! API GOES HERE
+
+      // ! GET FROM SERVER HERE then load path
+    }
+  };
 
   const loadPath = (path: CanvasPath[]) => {
     setPaths(path);
@@ -36,7 +46,8 @@ const Tab2: React.FC = () => {
   };
 
   const onChange = (updatedPaths: any): void => {
-    console.log(updatedPaths);
+    // console.log(updatedPaths);
+    updateServer();
     setPaths(updatedPaths);
   };
 

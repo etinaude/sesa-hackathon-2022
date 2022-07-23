@@ -106,10 +106,8 @@ const Tab1: React.FC = () => {
             <IonTitle size="large">Bus Thoughts</IonTitle>
           </IonToolbar>
         </IonHeader>
-
-        <div className="px-8 flex flex-col divide-y">{thoughts}</div>
-
         <InputComp></InputComp>
+        <div className="px-8 flex flex-col divide-y">{thoughts}</div>
       </IonContent>
 
       <Fab />
