@@ -10,7 +10,7 @@ import InputComp from "../components/InputComp";
 import ThoughtComp from "../components/ThoughtComp";
 import Fab from "../components/Fab";
 import "./Tab1.css";
-import { Message } from '../types/message';
+import { Message } from "../types/message";
 
 // TEMP REPLACE
 const thoughtAPIResponse: Message[] = [
