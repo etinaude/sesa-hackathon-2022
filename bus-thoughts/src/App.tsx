@@ -33,6 +33,7 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
+import MyThoughts from "./pages/MyThoughts";
 
 setupIonicReact();
 
@@ -47,13 +48,15 @@ const App: React.FC = () => (
           <Route exact path="/tab2">
             <Tab2 />
           </Route>
-
           <Route exact path="/tab3">
             <Tab3 />
           </Route>
+          <Route exact path="/my-thoughts">
+            <MyThoughts />
+          </Route>
           {/* <Route path="/">
             <Redirect exact to="/tab1" />
-          </Route> */}
+          </Route>  */}
         </BrowserRouter>
       </IonRouterOutlet>
     </IonReactRouter>

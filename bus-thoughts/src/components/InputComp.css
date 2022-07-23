@@ -1,18 +1,18 @@
 .input-bar {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: #fff;
-  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.2);
-  border-radius: 20px 20px 0 0;
-  padding: 10px;
+  border-radius: 8px;
+  background-color: #F5F5F5;
+  margin: 20px 30px;
+  height: 60%;
 }
 
-.input-bar input {
+.input-bar textarea {
   width: 100%;
+  height: 100%;
   border: none;
-  border-radius: 20px;
-  padding: 10px;
+  border-radius: 8px;
+  padding: 20px;
   font-size: 16px;
+  background-color: #F5F5F5;
   outline: none;
+  resize: none;
 }

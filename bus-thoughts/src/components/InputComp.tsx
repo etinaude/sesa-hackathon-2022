@@ -41,6 +41,11 @@ const InputComp: React.FC<ContainerProps> = () => {
   }
 
   return (
+<<<<<<< HEAD
+    <div className="input-bar">
+      <textarea placeholder="What are you thinking now?" />
+    </div>
+=======
     <>
       <div className="input-bar">
         <input
@@ -60,6 +65,7 @@ const InputComp: React.FC<ContainerProps> = () => {
         </IonButton>
       </div>
     </>
+>>>>>>> main
   );
 };
 
