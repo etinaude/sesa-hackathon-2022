@@ -2,11 +2,11 @@ import { gql } from "apollo-server";
 
 export const messageSchema = gql`
   scalar Date
- 
+
   type Message {
     id: ID!
     message: String!
-    date: String! 
+    date: String!
     reply: ID
   }
 
@@ -14,18 +14,27 @@ export const messageSchema = gql`
     messages: [Message]
   }
 
+  type Mutation {
+    addMessage(id: ID!, message: String!, date: String!, reply: ID): Message
+  }
 `;
 
 export const messageResolver = {
   Query: {
     messages: () => messageData,
   },
+  Mutation: {
+    addMessage: (parent, args) => {
+      console.log(args)
+      messageData.push(args)
+    }
+  },
 };
 
 export const messageData = [
   {
-    id:  "123",
+    id: "123",
     message: "hello",
-    date: "2022-07-23T14:03:30Z"
-  }
+    date: "2022-07-23T14:03:30Z",
+  },
 ];

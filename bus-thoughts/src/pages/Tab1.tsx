@@ -1,4 +1,5 @@
 import {
+  IonButton,
   IonContent,
   IonHeader,
   IonPage,
@@ -8,7 +9,6 @@ import {
 import InputComp from "../components/InputComp";
 import ThoughtComp from "../components/ThoughtComp";
 import Fab from "../components/Fab";
-
 import "./Tab1.css";
 
 // TEMP REPLACE
@@ -73,6 +73,7 @@ thoughtAPIResponse.forEach((thought) => {
 });
 
 const Tab1: React.FC = () => {
+
   return (
     <IonPage>
       <IonHeader>
@@ -86,10 +87,8 @@ const Tab1: React.FC = () => {
             <IonTitle size="large">Bus Thoughts</IonTitle>
           </IonToolbar>
         </IonHeader>
-
-        <div className="px-8 flex flex-col divide-y">{thoughts}</div>
-
         <InputComp></InputComp>
+        <div className="px-8 flex flex-col divide-y">{thoughts}</div>
       </IonContent>
 
       <Fab />
