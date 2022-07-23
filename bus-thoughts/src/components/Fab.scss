@@ -1,0 +1,58 @@
+.fab-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  max-width: 100%;
+  max-height: 100%;
+
+  .fab {
+    z-index: 9999;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #2c384c;
+    color: #fff;
+    box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    .icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 30px;
+      color: #fff;
+      line-height: 1;
+    }
+
+    &:hover + .menu {
+      display: flex;
+    }
+  }
+
+  .menu {
+    display: none;
+
+    flex-direction: column;
+    position: absolute;
+    bottom: 110%;
+    width: 250%;
+    transform: translate(-5px, 0);
+    right: 0%;
+    box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.2);
+
+    color: #fff;
+    background: #2c384c;
+    border-radius: 10px;
+
+    .menu-item {
+      border-bottom: #41516d 1px solid;
+      padding: 10px;
+
+      &:last-of-type {
+        border-bottom: none;
+      }
+    }
+  }
+}
