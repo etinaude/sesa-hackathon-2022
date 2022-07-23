@@ -13,8 +13,8 @@ export const Topic = () => {
   //   console.log(tableTopic);
   return (
     <div>
-      <div>{date}</div>
-      <div>{array[0]}</div>
+      <div className="pl-4">{date}</div>
+      <div className="border-red-900 p-4 ">{array[0]}</div>
     </div>
   );
 };
