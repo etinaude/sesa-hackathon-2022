@@ -1,9 +1,11 @@
 import "./ThoughtComp.css";
-import LikeIcon from "../assets/like-icon.svg";
-import ReplyIcon from "../assets/reply-icon.svg";
 import { useMutation, gql } from "@apollo/client";
+import LikeIconInactive from "../assets/like-icon-inactive.svg";
+import ReplyIconInactive from "../assets/reply-icon-inactive.svg";
+import LikeIconActive from "../assets/like-icon-active.svg";
+import ReplyIconActive from "../assets/reply-icon-active.svg";
 import { useState } from "react";
-import { Message } from "../types/message"
+import { Message } from "../types/message";
 
 const SET_LIKED = gql`
   mutation SetLiked($id: ID!, $liked: Boolean!) {
@@ -44,10 +46,12 @@ const ThoughtComp: React.FC<ContainerProps> = ({
     return null;
   }
 
+const ThoughtComp: React.FC<ContainerProps> = ({ name, thought, ReplyTo }) => {
+  const currentDate = new Date();
+  const [likeActive, setLikeActive] = useState(false);
+  const [replyActive, setReplyActive] = useState(false);
   return (
     <div className="py-4">
-      {/* <strong>{name}</strong>
-      <p>{thought}</p> */}
       <section id="header" className="flex flex-row gap-3">
         <div id="avatar" className="w-12 h-12 rounded-full bg-slate-500"></div>
         <div id="info" className="flex flex-col">
@@ -58,13 +62,33 @@ const ThoughtComp: React.FC<ContainerProps> = ({
       <section id="content" className="mt-1 px-1">
         <p>{message}</p>
       </section>
-      <section id="footer" className="flex flex-row gap-3 mt-2 px-1">
-        <div id="like" className="flex flex-row justify-center">
-          <img src={LikeIcon} alt="like-icon" onClick={() => clickedLike()}/>
-          <p>count</p>
+      <section
+        id="footer"
+        className="items-center flex flex-row gap-3 mt-2 px-1"
+      >
+        <div
+          id="reply"
+          className="gap-1 items-center flex flex-row justify-center"
+        >
+          <button onClick={() => setLikeActive(!likeActive)}>
+            <img
+              src={likeActive ? LikeIconActive : LikeIconInactive}
+              alt="like-icon"
+            />
+          </button>
+          <p className="text-sm">3</p>
         </div>
-        <div id="reply">
-          <img src={ReplyIcon} alt="reply-icon" />
+        <div
+          id="like"
+          className="gap-1 items-center flex flex-row justify-center"
+        >
+          <button onTouchStart={() => setReplyActive(true)}>
+            <img
+              src={replyActive ? ReplyIconActive : ReplyIconInactive}
+              alt="reply-icon"
+            />
+          </button>
+          <p className="text-sm">3</p>
         </div>
       </section>
     </div>
