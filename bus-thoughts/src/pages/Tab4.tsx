@@ -15,7 +15,7 @@ const Tab4: React.FC = () => {
   const [running, setRunning] = useState(false);
   const [isModal, setModal] = useState(false);
 
-  const requiredText = "abcdef ghijklmnopqrstuvwxyz";
+  const requiredText = "abcdefghijklmnopqrstuvwxyz";
 
   const closeModal = () => {
     setModal(false);
@@ -80,19 +80,17 @@ const Tab4: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>
-            Text Speedster
-            <div className="numbers">
-              <span>{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
-              <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
-              <span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
-            </div>
-          </IonTitle>
-        </IonToolbar>
-      </IonHeader>
       <IonContent fullscreen>
+        <div id="content" className="px-8">
+          <section id="header" className="pt-10">
+            <h1 className="font-semibold mb-4 text-[30px]">Text Speedster</h1>
+          </section>
+          <div className="numbers">
+            <span>{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
+            <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
+            <span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
+          </div>
+        </div>
         <div className="text-cont">
           <div className="text-area template">{textArray}</div>
           <textarea
