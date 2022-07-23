@@ -56,7 +56,7 @@ const App: React.FC = () => (
           </Route>
           <Route path="/">
             <Redirect exact to="/tab1" />
-          </Route>
+          </Route> */
         </BrowserRouter>
       </IonRouterOutlet>
     </IonReactRouter>
