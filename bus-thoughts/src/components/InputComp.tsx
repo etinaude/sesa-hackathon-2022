@@ -30,7 +30,8 @@ const ADD_MESSAGE = gql`
 
 interface ContainerProps {}
 
-const InputComp: React.FC<ContainerProps> = () => {
+const InputComp = (props: { setPostData: (props?: any) => void }) => {
+  const { setPostData } = props;
   const [addMessage, { data, loading, error }] = useMutation(ADD_MESSAGE);
   const [message, setMessage] = useState("");
 
@@ -42,7 +43,10 @@ const InputComp: React.FC<ContainerProps> = () => {
 
   return (
     <div className="input-bar">
-      <textarea placeholder="What are you thinking now?" />
+      <textarea
+        placeholder="What are you thinking now?"
+        onChange={(e) => setPostData(e.target.value)}
+      />
     </div>
   );
 };
