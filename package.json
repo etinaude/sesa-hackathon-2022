@@ -10,9 +10,5 @@
   "workspaces": [
     "backend",
     "bus-thoughts"
-  ],
-  "devDependencies": {
-    "lerna": "^5.2.0"
-  }
-  
+  ]
 }
