@@ -18,6 +18,8 @@ const styles = {
 
 const Tab2: React.FC = () => {
   const [pickedColor, pickColor] = useState("#ff7788");
+  const [strokeWidth, setStrokeWidth] = useState(2);
+
   const [isColorOpen, setColorOpen] = useState(false);
 
   const [paths, setPaths] = React.useState<CanvasPath[]>([]);
@@ -48,7 +50,7 @@ const Tab2: React.FC = () => {
         </IonHeader>
         <ReactSketchCanvas
           style={styles}
-          strokeWidth={2}
+          strokeWidth={strokeWidth}
           strokeColor={pickedColor}
           ref={canvasRef}
           onChange={onChange}
@@ -56,7 +58,17 @@ const Tab2: React.FC = () => {
       </IonContent>
 
       <div className="color-menu-container">
-        <div className="item" onClick={() => setColorOpen(!isColorOpen)}></div>
+        <div className="item" onClick={() => setColorOpen(!isColorOpen)}>
+          size
+          <input
+            type="range"
+            min="1"
+            max="10"
+            className="slider"
+            value={strokeWidth}
+            onChange={(e) => setStrokeWidth(Number(e.target.value))}
+          />
+        </div>
 
         <div className="item">
           <img

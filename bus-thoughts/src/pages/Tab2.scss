@@ -16,6 +16,10 @@
     height: 50px;
     border-radius: 50px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
 
     .label {
       max-height: 0;
@@ -46,10 +50,17 @@
 }
 
 .picker {
-  position: fixed;
-  transform: translate(-35%, 6px);
+  position: absolute;
+  top: 120%;
 }
 
 .hidden {
   display: none;
+}
+
+.slider {
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
 }
