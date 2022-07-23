@@ -11,6 +11,8 @@ import ThoughtComp from "../components/ThoughtComp";
 import Fab from "../components/Fab";
 import "./Tab1.css";
 import { Message } from "../types/message";
+import InputButton from "../components/InputButton";
+import { Redirect, useHistory } from "react-router";
 
 // TEMP REPLACE
 const thoughtAPIResponse: Message[] = [
@@ -92,24 +94,27 @@ thoughtAPIResponse.forEach((thought) => {
   );
 });
 
-const Tab1: React.FC = () => {
+const Tab1 = () => {
+  const history = useHistory();
+  const inputOnClick = () => {
+    history.push("/thoughts/post");
+    window.location.reload();
+  };
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Bus Thoughts</IonTitle>
-        </IonToolbar>
-      </IonHeader>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Bus Thoughts</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <InputComp></InputComp>
-        <div className="px-8 flex flex-col divide-y">{thoughts}</div>
+        <div id="content" className="px-8">
+          <section id="header" className="pt-10">
+            <h1 className="font-semibold mb-4 text-[30px]">Thoughts</h1>
+          </section>
+          <section id="input">
+            <InputButton onClick={inputOnClick} />
+          </section>
+          <section id="thoughts" className="flex flex-col mt-1 divide-y">
+            {thoughts}
+          </section>
+        </div>
       </IonContent>
-
       <Fab />
     </IonPage>
   );
