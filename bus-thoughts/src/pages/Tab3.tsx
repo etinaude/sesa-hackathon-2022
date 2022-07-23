@@ -5,7 +5,9 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
+import { useHistory } from "react-router-dom";
 import Fab from "../components/Fab";
+import InputButton from "../components/InputButton";
 import ThoughtComp from "../components/ThoughtComp";
 import { Topic } from "../components/Topic";
 import { Message } from "../types/message";
@@ -76,25 +78,26 @@ const thoughtAPIResponse: Message[] = [
 ];
 
 const Tab3: React.FC = () => {
+  const history = useHistory();
+
+  const inputOnClick = () => {
+    history.push("/thoughts/post");
+    window.location.reload();
+  };
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Topic of the day</IonTitle>
-        </IonToolbar>
-      </IonHeader>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Topic of the day</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <Topic />
-        {/* TODO <InputButton/> */}
-        <div className="px-8 flex flex-col divide-y">
-          {thoughtAPIResponse.map((thoughts, index) => {
-            return <ThoughtComp key={index} thoughts={thoughts} />;
-          })}
+        <div id="content" className="px-8">
+          <section id="header" className="pt-10">
+            <h1 className="font-semibold mb-4 text-[30px]">Topic of the day</h1>
+          </section>
+          <Topic />
+          <InputButton onClick={inputOnClick} />
+          <div className=" flex flex-col divide-y">
+            {thoughtAPIResponse.map((thoughts, index) => {
+              return <ThoughtComp key={index} thoughts={thoughts} />;
+            })}
+          </div>
         </div>
       </IonContent>
       <Fab />
