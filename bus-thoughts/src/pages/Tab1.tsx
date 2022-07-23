@@ -10,6 +10,67 @@ import ThoughtComp from "../components/ThoughtComp";
 
 import "./Tab1.css";
 
+// TEMP REPLACE
+const thoughtAPIResponse = [
+  {
+    name: "John Doe",
+    Message: "This is a test thought a",
+    id: "a",
+  },
+  {
+    name: "Jane Doe",
+    Message: "Good thought",
+    id: "b",
+  },
+  {
+    name: "Doe",
+    Message: "Wow cool app",
+    id: "c",
+  },
+  {
+    name: "Joe",
+    Message: "Whats this random QR code?",
+    ReplyTo: "aaaa",
+    id: "d",
+  },
+  {
+    name: "Joe",
+    Message: "Whats this random QR code?",
+    ReplyTo: "aaaa",
+    id: "e",
+  },
+  {
+    name: "Joe",
+    Message: "Whats this random QR code?",
+    ReplyTo: "aaaa",
+    id: "f",
+  },
+  {
+    name: "Joe",
+    Message: "Whats this random QR code?",
+    ReplyTo: "aaaa",
+    id: "g",
+  },
+  {
+    name: "Joe",
+    Message: "Whats this random QR code?",
+    ReplyTo: "aaaa",
+    id: "h",
+  },
+];
+
+var thoughts: any = [];
+thoughtAPIResponse.forEach((thought) => {
+  thoughts.push(
+    <ThoughtComp
+      key={thought.id}
+      name={thought.name}
+      thought={thought.Message}
+      ReplyTo={thought.ReplyTo}
+    />
+  );
+});
+
 const Tab1: React.FC = () => {
   return (
     <IonPage>
@@ -25,13 +86,7 @@ const Tab1: React.FC = () => {
           </IonToolbar>
         </IonHeader>
 
-        <div className="thought-container">
-          <ThoughtComp
-            name="Fred"
-            thought="Today I'm going to a hackathon!!!"
-          />
-          <ThoughtComp name="Fred" thought="@Fred SAME!!!" />
-        </div>
+        <div className="thought-container">{thoughts}</div>
 
         <InputComp></InputComp>
       </IonContent>
