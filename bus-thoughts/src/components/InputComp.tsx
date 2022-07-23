@@ -5,7 +5,7 @@ interface ContainerProps {}
 const InputComp: React.FC<ContainerProps> = () => {
   return (
     <div className="input-bar">
-      <input type="text" placeholder="Enter a thought..." />
+      <textarea placeholder="What are you thinking now?" />
     </div>
   );
 };

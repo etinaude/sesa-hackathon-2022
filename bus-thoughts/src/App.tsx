@@ -39,6 +39,7 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
+import MyThoughts from "./pages/MyThoughts";
 
 setupIonicReact();
 
@@ -50,8 +51,8 @@ const App: React.FC = () => (
           <Routes>
             <Route path="/tab1" element={<Tab1 />} />
             <Route path="/tab2" element={<Tab2 />} />
-
             <Route path="/tab3" element={<Tab3 />} />
+            <Route path="/my-thoughts" element={<MyThoughts />} />
 
             <Route path="/" element={<Navigate replace to="/tab1" />} />
           </Routes>

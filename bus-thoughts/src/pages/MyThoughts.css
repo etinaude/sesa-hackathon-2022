@@ -1,0 +1,13 @@
+ion-toolbar {
+    --padding-top: 30px;
+    --padding-bottom: 10px;
+    --padding-end: 20px;
+    --padding-start: 20px;
+}
+#share-button {
+    --background: #2C384C;
+    --border-radius: 8px;
+    --padding-start: 15px;
+    --padding-end: 15px;
+}
+
