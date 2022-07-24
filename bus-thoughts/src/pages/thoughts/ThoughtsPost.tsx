@@ -45,13 +45,13 @@ const ThoughtsPost: React.FC = () => {
       createTopicMessage({
         variables: {
           topicMessageInput: {
-            name: window.sessionStorage.getItem("name"),
+            name: name,
             content: postData,
             image: window.sessionStorage.getItem("image"),
           },
         },
       });
-      history.push("/tab3");
+      history.push("/bus-123/tab3");
     } else {
       createMessage({
         variables: {
@@ -77,12 +77,14 @@ const ThoughtsPost: React.FC = () => {
       <IonContent fullscreen>
         <section
           id="header"
-          className="pt-10 px-8 flex flex-row justify-between">
+          className="pt-10 px-8 flex flex-row justify-between"
+        >
           <div className="flex flex-col">
             <div className="flex flex-row gap-3">
               <button
                 onTouchEnd={handleBack}
-                className="font-semibold mb-4 text-[20px]">
+                className="font-semibold mb-4 text-[20px]"
+              >
                 {"←"}
               </button>
               <h1 className="font-semibold mb-4 text-[30px]">My Thoughts</h1>
@@ -91,7 +93,8 @@ const ThoughtsPost: React.FC = () => {
           </div>
           <button
             onClick={() => handleButtonClick()}
-            className="bg-primary text-white px-4 h-9 rounded-lg">
+            className="bg-primary text-white px-4 h-9 rounded-lg"
+          >
             Share
           </button>
         </section>

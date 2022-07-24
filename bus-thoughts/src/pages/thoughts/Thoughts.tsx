@@ -71,14 +71,16 @@ const ThoughtsPage = () => {
           <section id="thoughts" className="flex flex-col mt-1 divide-y">
             {messages.length > 0 ? (
               messages.map((thoughts: Message, index) => {
-                return (
-                  <ThoughtComp
-                    key={index}
-                    replies={thoughts.replies.length}
-                    thoughts={thoughts}
-                    isTopic={false}
-                  />
-                );
+                if (thoughts != null) {
+                  return (
+                    <ThoughtComp
+                      key={index}
+                      replies={thoughts.replies && thoughts.replies.length}
+                      thoughts={thoughts}
+                      isTopic={false}
+                    />
+                  );
+                }
               })
             ) : (
               <div>No thoughts found on the bus, share one now!</div>
