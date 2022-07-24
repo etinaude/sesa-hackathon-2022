@@ -18,6 +18,7 @@ const REPLIE_QUERY = gql`
       isLiked
       replies
       replyTo
+      image
       createdAt
     }
   }
@@ -64,7 +65,12 @@ const Replies = () => {
 
   const [replyValue, setReplyValue] = useState("");
 
+  const [replyMessage, setReplyMessage] = useState("");
+
+  console.log("reply message: ", replyMessage);
+
   const name = window.sessionStorage.getItem("name");
+  const image = window.sessionStorage.getItem("image");
 
   useEffect(() => {
     if (nameData != undefined) {
@@ -87,8 +93,6 @@ const Replies = () => {
 
   const handleReply = () => {
     if (repliesData != undefined) {
-      console.log(replyValue);
-      console.log(message._id);
       if (isTopic) {
         createReply({
           variables: {
@@ -97,6 +101,7 @@ const Replies = () => {
               name: name,
               content: replyValue,
               isTopic: true,
+              image: image,
             },
           },
         });
@@ -108,6 +113,7 @@ const Replies = () => {
               name: name,
               content: replyValue,
               isTopic: false,
+              image: image,
             },
           },
         });
@@ -125,17 +131,18 @@ const Replies = () => {
         <ThoughtComp
           thoughts={state.message}
           isTopic={isTopic}
-          replies={message.replies.length}
+          replies={message.replies && message.replies.length}
         />
-        <div className="">
+        <div>
           {replyMessages.length > 0 ? (
             replyMessages.map((message, index) => {
               return (
                 <ReplyComp
                   key={index}
                   message={message}
-                  replies={message.replies.length}
+                  replies={message.replies && message.replies.length}
                   replyTo={replyToName}
+                  setReplyMessage={setReplyMessage}
                 />
               );
             })

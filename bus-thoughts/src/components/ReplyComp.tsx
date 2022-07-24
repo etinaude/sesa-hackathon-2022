@@ -12,6 +12,7 @@ interface IReply {
   isTopic?: boolean;
   replyTo: string;
   replies?: number;
+  setReplyMessage?: (props?: any) => void;
 }
 const SET_LIKES = gql`
   mutation SetLikes($id: ID!, $likesInput: MessageLikesInput) {
@@ -29,7 +30,8 @@ const GET_NAME = gql`
 
 const ReplyComp = (props: IReply) => {
   const history = useHistory();
-  const { message, isTopic, replyTo, replies } = props;
+  const { message, isTopic, replyTo, replies, setReplyMessage } = props;
+
   const [likeActive, setLikeActive] = useState(message.isLiked);
   const [replyActive, setReplyActive] = useState(false);
   const [likedCount, setLikedCount] = useState(message.likes);
@@ -77,15 +79,15 @@ const ReplyComp = (props: IReply) => {
     }
     setLikeActive(!likeActive);
   };
-  const handleReply = (message: Message) => {
-    console.log(message);
-  };
+  const handleReply = (message: Message) => {};
   return (
     <div className="py-4 pl-5">
       <section id="header" className="flex flex-row gap-3 justify-start">
-        <div id="avatar" className="w-12 h-12 rounded-full bg-slate-500"></div>
-        <div className="flex flex-col">
-          <div id="info" className="flex flex-row gap-2 items-center">
+        <div id="avatar">
+          <img className="w-12 h-12" src={message.image} alt="avatar" />
+        </div>
+        <div className="flex flex-col w-60">
+          <div id="info" className="flex flex-row gap-2 w-full items-center">
             <p className="text-lg font-bold">{message.name}</p>
             <p className="text-sm">
               {new Date(message.createdAt).toLocaleString()}
@@ -100,7 +102,7 @@ const ReplyComp = (props: IReply) => {
             className="items-center flex flex-row gap-3 mt-2"
           >
             <div
-              id="reply"
+              id="like"
               className="gap-1 items-center flex flex-row justify-center"
             >
               <button onClick={handleLikedClicked}>
@@ -112,13 +114,13 @@ const ReplyComp = (props: IReply) => {
               <p className="text-sm w-1">{likedCount != 0 && likedCount}</p>
             </div>
             <div
-              id="like"
+              id="reply"
               className="gap-1 items-center flex flex-row justify-center"
             >
               <button
                 onTouchStart={() => {
                   setReplyActive(true);
-                  handleReply(message);
+                  setReplyMessage!(message);
                 }}
               >
                 <img
