@@ -38,28 +38,31 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonRouterOutlet>
         <BrowserRouter>
-          <Route exact path="/bus-123/thoughts">
+          <Route exact path="/thoughts">
             <ThoughtsPage />
+          </Route>
+          <Route path="/canvas">
+            <Tab2 />
           </Route>
           <Route path="/bus-123/canvas">
             <Tab2 />
           </Route>
-          <Route exact path="/bus-123/tab3">
+          <Route exact path="/tab3">
             <Tab3 />
           </Route>
-          <Route exact path="/bus-123/tab4">
+          <Route exact path="/tab4">
             <Tab4 />
           </Route>
-          <Route exact path="/bus-123/thoughts/post">
+          <Route exact path="/thoughts/post">
             <ThoughtsPost />
           </Route>
           <Route exact path="/">
             <WelcomePage />
           </Route>
-          <Route exact path="/bus-123/leaderboard">
+          <Route exact path="/leaderboard">
             <LeaderBoard />
           </Route>
-          <Route path="/bus-123/thoughts/replies">
+          <Route path="/thoughts/replies">
             <Replies />
           </Route>
         </BrowserRouter>

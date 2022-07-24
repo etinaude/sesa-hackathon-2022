@@ -124,8 +124,7 @@ const Tab4: React.FC = () => {
 
         <div
           className={isModal ? "modal" : "hidden"}
-          onTouchEnd={() => closeModal()}
-        >
+          onTouchEnd={() => closeModal()}>
           <div className="modal-content">
             <h2> WOOHOO!!! you're done</h2>
 
@@ -137,8 +136,7 @@ const Tab4: React.FC = () => {
             </p>
             <button
               className="solid rounded bg-sky-500 p-5"
-              onTouchEnd={() => history.push("/bus-123/leaderboard")}
-            >
+              onTouchEnd={() => history.push("/leaderboard")}>
               Go to Leaderboard
             </button>
           </div>
