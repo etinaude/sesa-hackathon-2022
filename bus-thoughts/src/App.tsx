@@ -59,10 +59,10 @@ const App: React.FC = () => (
           <Route exact path="/">
             <WelcomePage />
           </Route>
-          <Route exact path="/leaderboard">
+          <Route exact path="/*/leaderboard">
             <LeaderBoard />
           </Route>
-          <Route path="/thoughts/replies">
+          <Route path="/bus-123/thoughts/replies">
             <Replies />
           </Route>
         </BrowserRouter>
