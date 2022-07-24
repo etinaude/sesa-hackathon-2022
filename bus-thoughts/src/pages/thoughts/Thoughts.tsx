@@ -62,16 +62,23 @@ const ThoughtsPage = () => {
     <IonPage>
       <IonContent fullscreen>
         <div id="content" className="px-8">
-          <section id="header" className="pt-10">
+          <section id="header" className="pt-10 sticky top-0 bg-white">
             <h1 className="font-semibold mb-4 text-[30px]">Thoughts</h1>
-          </section>
-          <section id="input">
-            <InputButton onClick={inputOnClick} />
+            <section id="input">
+              <InputButton onClick={inputOnClick} />
+            </section>
           </section>
           <section id="thoughts" className="flex flex-col mt-1 divide-y">
             {messages.length > 0 ? (
-              messages.map((thoughts, index) => {
-                return <ThoughtComp key={index} thoughts={thoughts} />;
+              messages.map((thoughts: Message, index) => {
+                return (
+                  <ThoughtComp
+                    key={index}
+                    replies={thoughts.replies.length}
+                    thoughts={thoughts}
+                    isTopic={false}
+                  />
+                );
               })
             ) : (
               <div>No thoughts found on the bus, share one now!</div>

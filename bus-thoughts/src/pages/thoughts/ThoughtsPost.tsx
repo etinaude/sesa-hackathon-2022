@@ -22,6 +22,7 @@ const CREATE_TOPIC_MESSAGE = gql`
     createTopicMessage(topicMessageInput: $topicMessageInput) {
       name
       content
+      image
     }
   }
 `;
@@ -32,6 +33,8 @@ const ThoughtsPost: React.FC = () => {
   const [postData, setPostData] = useState("");
   const [createMessage] = useMutation(CREATE_MESSAGE);
   const [createTopicMessage] = useMutation(CREATE_TOPIC_MESSAGE);
+  const { isTopic, topic } = state;
+  const name = window.sessionStorage.getItem("name");
 
   const history = useHistory();
 
@@ -42,26 +45,31 @@ const ThoughtsPost: React.FC = () => {
       createTopicMessage({
         variables: {
           topicMessageInput: {
-            name: "Carlie",
-            content: postData,
-          },
-        },
-      });
-      history.push("/tab3");
-    } else {
-      createMessage({
-        variables: {
-          messageInput: {
             name: window.sessionStorage.getItem("name"),
             content: postData,
             image: window.sessionStorage.getItem("image")
           },
         },
       });
+      history.push("/bus-123/tab3");
+    } else {
+      createMessage({
+        variables: {
+          messageInput: {
+            name: name,
+            content: postData,
+            image: window.sessionStorage.getItem("image"),
+          },
+        },
+      });
       history.push("/bus-123/thoughts");
     }
-    
+
     window.location.reload();
+  };
+
+  const handleBack = () => {
+    history.goBack();
   };
 
   return (
@@ -71,7 +79,18 @@ const ThoughtsPost: React.FC = () => {
           id="header"
           className="pt-10 px-8 flex flex-row justify-between"
         >
-          <h1 className="font-semibold mb-4 text-[30px]">My Thoughts</h1>
+          <div className="flex flex-col">
+            <div className="flex flex-row gap-3">
+              <button
+                onTouchEnd={handleBack}
+                className="font-semibold mb-4 text-[20px]"
+              >
+                {"←"}
+              </button>
+              <h1 className="font-semibold mb-4 text-[30px]">My Thoughts</h1>
+            </div>
+            {isTopic && <p>{`Topic: ${topic}`}</p>}
+          </div>
           <button
             onClick={() => handleButtonClick()}
             className="bg-primary text-white px-4 h-9 rounded-lg"

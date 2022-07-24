@@ -9,7 +9,9 @@ import ReplyIconActive from "../assets/reply-icon-active.svg";
 
 interface IReply {
   message: Message;
-  isTopic: boolean;
+  isTopic?: boolean;
+  replyTo: string;
+  replies?: number;
 }
 const SET_LIKES = gql`
   mutation SetLikes($id: ID!, $likesInput: MessageLikesInput) {
@@ -27,7 +29,7 @@ const GET_NAME = gql`
 
 const ReplyComp = (props: IReply) => {
   const history = useHistory();
-  const { message, isTopic } = props;
+  const { message, isTopic, replyTo, replies } = props;
   const [likeActive, setLikeActive] = useState(message.isLiked);
   const [replyActive, setReplyActive] = useState(false);
   const [likedCount, setLikedCount] = useState(message.likes);
@@ -90,7 +92,7 @@ const ReplyComp = (props: IReply) => {
             </p>
           </div>
           <section id="content" className="mt-1">
-            <p className="text-sm font-semibold pb-1 text-gray-400">{`Reply to @${replyToName}`}</p>
+            <p className="text-sm font-semibold pb-1 text-gray-400">{`Reply to @${replyTo}`}</p>
             <p>{message.content}</p>
           </section>
           <section
@@ -117,11 +119,6 @@ const ReplyComp = (props: IReply) => {
                 onTouchStart={() => {
                   setReplyActive(true);
                   handleReply(message);
-                  //   history.push({
-                  //     pathname: "/message/replies/1",
-                  //     state: { message: message },
-                  //   });
-                  //   window.location.reload();
                 }}
               >
                 <img
@@ -129,7 +126,7 @@ const ReplyComp = (props: IReply) => {
                   alt="reply-icon"
                 />
               </button>
-              <p className="text-sm">3</p>
+              <p className="text-sm">{replies != 0 && replies}</p>
             </div>
           </section>
         </div>

@@ -10,6 +10,7 @@ export const messageResolver = {
             return await TopicMessage.find();
         },
         async getReplies(_, { ID, isTopic }) {
+            console.log(ID)
             if (isTopic) {
                 const res = await TopicMessage.findById(ID)
                 if (res.replies.length > 0) {
@@ -22,9 +23,13 @@ export const messageResolver = {
                 }
             } else {
                 const res = await Message.findById(ID)
-                return {
-                    id: res.id,
-                    replies: res.replies
+                if (res.replies.length > 0) {
+                    const replies = Promise.all(res.replies.map(async (reply) => {
+                        return await Message.findById(reply);
+                    }))
+                    return replies
+                } else {
+                    return []
                 }
             }
         },
@@ -62,7 +67,7 @@ export const messageResolver = {
             const updatedMessage = (await Message.updateOne({ _id: ID }, { likes: likes, isLiked: isLiked })).modifiedCount;
             return updatedMessage;
         },
-        async createTopicMessage(_, { topicMessageInput: { name, content } }) {
+        async createTopicMessage(_, { topicMessageInput: { name, content, image } }) {
             const newTopicMessage = new TopicMessage({
                 name: name,
                 content: content,
@@ -70,7 +75,8 @@ export const messageResolver = {
                 likes: 0,
                 isLiked: false,
                 replies: [],
-                replyTo: null
+                replyTo: null,
+                image: image
             });
 
             const res = await newTopicMessage.save();
@@ -85,45 +91,46 @@ export const messageResolver = {
             return updatedMessage;
         },
         async createReply(_, { replyInput: { replyTo, name, content, isTopic } }) {
-            if (isTopic) {
-                const newTopicReply = new TopicMessage({
-                    name: name,
-                    content: content,
-                    createdAt: new Date().toISOString(),
-                    likes: 0,
-                    isLiked: false,
-                    replies: [],
-                    replyTo: replyTo
-                });
+            console.log(replyTo)
+            if (replyTo) {
+                if (isTopic) {
+                    const newTopicReply = new TopicMessage({
+                        name: name,
+                        content: content,
+                        createdAt: new Date().toISOString(),
+                        likes: 0,
+                        isLiked: false,
+                        replies: [],
+                        replyTo: replyTo
+                    });
+        
+                    const res = await newTopicReply.save();
     
-                const res = await newTopicReply.save();
-
-                await TopicMessage.updateOne({ _id: replyTo }, { $push: {replies: res.id}  });
-
-                
-                return {
-                    id: res.id,
-                    ...res._doc
-                };
-            } else {
-                const newMessage = new Message({
-                    name: name,
-                    content: content,
-                    createdAt: new Date().toISOString(),
-                    likes: 0,
-                    isLiked: false,
-                    replies: [],
-                    replyTo: replyTo
-                });
-    
-                const res = await newMessage.save();
-                
-                return {
-                    id: res.id,
-                    ...res._doc
+                    await TopicMessage.updateOne({ _id: replyTo }, { $push: {replies: res.id}  });
+            
+                    return {
+                        id: res.id,
+                        ...res._doc
+                    };
+                } else {
+                    const newMessage = new Message({
+                        name: name,
+                        content: content,
+                        createdAt: new Date().toISOString(),
+                        likes: 0,
+                        isLiked: false,
+                        replies: [],
+                        replyTo: replyTo
+                    });
+        
+                    const res = await newMessage.save();
+                    
+                    return {
+                        id: res.id,
+                        ...res._doc
+                    }
                 }
             }
-
         }
     }
 }

@@ -137,7 +137,7 @@ const Tab4: React.FC = () => {
             </p>
             <button
               className="solid rounded bg-sky-500 p-3"
-              onTouchEnd={() => history.push("/*/leaderboard")}
+              onTouchEnd={() => history.push("/bus-123/leaderboard")}
             >
               Go to Leaderboard
             </button>
