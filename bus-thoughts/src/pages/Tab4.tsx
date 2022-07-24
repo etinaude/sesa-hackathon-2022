@@ -135,7 +135,7 @@ const Tab4: React.FC = () => {
               <span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
             </p>
             <button
-              className="solid rounded bg-sky-500 p-5"
+              className="solid rounded bg-sky-500 p-3"
               onTouchEnd={() => history.push("/leaderboard")}>
               Go to Leaderboard
             </button>
