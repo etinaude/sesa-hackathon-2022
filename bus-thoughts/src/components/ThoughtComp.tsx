@@ -99,7 +99,7 @@ const ThoughtComp = (props: IThoughtComp) => {
             onTouchStart={() => {
               setReplyActive(true);
               history.push({
-                pathname: "/thoughts/replies/1",
+                pathname: "/bus-123/thoughts/replies/1",
                 state: { thoughts: thoughts },
               });
               window.location.reload();
