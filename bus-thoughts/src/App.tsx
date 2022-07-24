@@ -57,9 +57,9 @@ const App: React.FC = () => (
             <WelcomePage />
           </Route>
           <Route exact path="/*/leaderboard">
-            <LeaderBoard/>
+            <LeaderBoard />
           </Route>
-          <Route path="/bus-123/thoughts/replies/:id">
+          <Route path="/bus-123/thoughts/replies">
             <Replies />
           </Route>
         </BrowserRouter>
