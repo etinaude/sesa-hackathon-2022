@@ -14,6 +14,8 @@ import { Message } from "../types/message";
 import "./Tab3.css";
 import { gql, useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
+const tableTopicGenerator = require("table-topic-generator");
+const tableTopic = tableTopicGenerator(1, "Summer", "Vacation");
 
 // TEMP REPLACE
 const thoughtAPIResponse: Message[] = [
@@ -140,6 +142,7 @@ const Tab3: React.FC = () => {
       pathname: "/bus-123/thoughts/post",
       state: {
         isTopic: true,
+        topic: tableTopic.Table_Topics[0],
       },
     });
     window.location.reload();
@@ -148,15 +151,22 @@ const Tab3: React.FC = () => {
     <IonPage>
       <IonContent fullscreen>
         <div id="content" className="px-8">
-          <section id="header" className="pt-10">
+          <section id="header" className="pt-10 sticky top-0 bg-white">
             <h1 className="font-semibold mb-4 text-[30px]">Topic of the day</h1>
+            <Topic />
+            <InputButton onClick={inputOnClick} />
           </section>
-          <Topic />
-          <InputButton onClick={inputOnClick} />
           <div className=" flex flex-col divide-y">
             {messages.length > 0 ? (
-              messages.map((thoughts, index) => {
-                return <ThoughtComp key={index} thoughts={thoughts} />;
+              messages.map((thoughts: Message, index) => {
+                return (
+                  <ThoughtComp
+                    key={index}
+                    thoughts={thoughts}
+                    replies={thoughts.replies.length}
+                    isTopic={true}
+                  />
+                );
               })
             ) : (
               <div>No thoughts found on the bus, share one now!</div>

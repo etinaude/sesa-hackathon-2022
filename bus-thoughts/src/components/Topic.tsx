@@ -12,8 +12,7 @@ export const Topic = () => {
   });
   return (
     <div>
-      <div>{date}</div>
-      <div className=" py-4 ">{array[0]}</div>
+      <div className="pb-4">{`${date}: ${array[0]}`}</div>
     </div>
   );
 };
