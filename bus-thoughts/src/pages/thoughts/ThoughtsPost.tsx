@@ -51,7 +51,7 @@ const ThoughtsPost: React.FC = () => {
           },
         },
       });
-      history.push("/*/tab3");
+      history.push("/bus-123/tab3");
     } else {
       createMessage({
         variables: {
