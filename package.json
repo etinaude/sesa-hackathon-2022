@@ -10,5 +10,8 @@
   "workspaces": [
     "backend",
     "bus-thoughts"
-  ]
+  ],
+  "dependencies": {
+    "boring-avatars": "^1.7.0"
+  }
 }

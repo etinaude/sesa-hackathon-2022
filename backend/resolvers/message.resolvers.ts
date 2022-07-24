@@ -39,7 +39,7 @@ export const messageResolver = {
         }
     },
     Mutation: {
-        async createMessage(_, { messageInput: { name, content } }) {
+        async createMessage(_, { messageInput: { name, content, image } }) {
             const newMessage = new Message({
                 name: name,
                 content: content,
@@ -47,7 +47,8 @@ export const messageResolver = {
                 likes: 0,
                 isLiked: false,
                 replies: [],
-                replyTo: null
+                replyTo: null,
+                image: image
             });
 
             const res = await newMessage.save();

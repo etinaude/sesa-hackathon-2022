@@ -25,6 +25,7 @@ const thoughtAPIResponse: Message[] = [
     replies: [],
     likes: 0,
     isLiked: false,
+    image: "https://source.boringavatars.com/beam/48/?colors=ffad08,edd75a,73b06f,0c8f8f,405059"
   },
   {
     name: "Jane Doe",
@@ -34,6 +35,7 @@ const thoughtAPIResponse: Message[] = [
     replies: [],
     createdAt: "jaksfjdlsa",
     isLiked: false,
+    image: "https://source.boringavatars.com/beam/48/?colors=ffad08,edd75a,73b06f,0c8f8f,405059"
   },
   {
     name: "Doe",
@@ -43,6 +45,7 @@ const thoughtAPIResponse: Message[] = [
     replies: [],
     createdAt: "jaksfjdlsa",
     isLiked: false,
+    image: "https://source.boringavatars.com/beam/48/?colors=ffad08,edd75a,73b06f,0c8f8f,405059"
   },
   {
     name: "Joe",
@@ -53,6 +56,7 @@ const thoughtAPIResponse: Message[] = [
     likes: 0,
     createdAt: "jaksfjdlsa",
     isLiked: false,
+    image: "https://source.boringavatars.com/beam/48/?colors=ffad08,edd75a,73b06f,0c8f8f,405059"
   },
   {
     name: "Joe",
@@ -63,6 +67,7 @@ const thoughtAPIResponse: Message[] = [
     likes: 50,
     createdAt: "jaksfjdlsa",
     isLiked: false,
+    image: "https://source.boringavatars.com/beam/48/?colors=ffad08,edd75a,73b06f,0c8f8f,405059"
   },
   {
     name: "Joe",
@@ -73,6 +78,7 @@ const thoughtAPIResponse: Message[] = [
     likes: 2,
     createdAt: "jaksfjdlsa",
     isLiked: false,
+    image: "https://source.boringavatars.com/beam/48/?colors=ffad08,edd75a,73b06f,0c8f8f,405059"
   },
   {
     name: "Joe",
@@ -83,6 +89,7 @@ const thoughtAPIResponse: Message[] = [
     likes: 5,
     createdAt: "jaksfjdlsa",
     isLiked: false,
+    image: "https://source.boringavatars.com/beam/48/?colors=ffad08,edd75a,73b06f,0c8f8f,405059"
   },
   {
     name: "Joe",
@@ -93,6 +100,7 @@ const thoughtAPIResponse: Message[] = [
     likes: 5,
     createdAt: "jaksfjdlsa",
     isLiked: false,
+    image: "https://source.boringavatars.com/beam/48/?colors=ffad08,edd75a,73b06f,0c8f8f,405059"
   },
 ];
 
@@ -128,7 +136,7 @@ const Tab3: React.FC = () => {
 
   const inputOnClick = () => {
     history.push({
-      pathname: "/post",
+      pathname: "/bus-123/thoughts/post",
       state: {
         isTopic: true,
       },

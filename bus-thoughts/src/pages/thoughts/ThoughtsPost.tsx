@@ -12,6 +12,7 @@ const CREATE_MESSAGE = gql`
     createMessage(messageInput: $messageInput) {
       name
       content
+      image
     }
   }
 `;
@@ -32,7 +33,7 @@ const ThoughtsPost: React.FC = () => {
   const [createMessage] = useMutation(CREATE_MESSAGE);
   const [createTopicMessage] = useMutation(CREATE_TOPIC_MESSAGE);
 
-  const hisotry = useHistory();
+  const history = useHistory();
 
   const handleButtonClick = () => {
     console.log(postData);
@@ -46,19 +47,20 @@ const ThoughtsPost: React.FC = () => {
           },
         },
       });
-      hisotry.push("/tab3");
+      history.push("/tab3");
     } else {
       createMessage({
         variables: {
           messageInput: {
-            name: "Amy",
+            name: window.sessionStorage.getItem("name"),
             content: postData,
+            image: window.sessionStorage.getItem("image")
           },
         },
       });
-      hisotry.push("/thoughts");
+      history.push("/bus-123/thoughts");
     }
-
+    
     window.location.reload();
   };
 

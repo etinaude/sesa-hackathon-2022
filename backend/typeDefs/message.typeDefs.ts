@@ -11,11 +11,13 @@ type Message {
     replies: [String]
     replyTo: String
     createdAt: String
+    image: String
 }
 
 input MessageInput {
     name: String
     content: String
+    image: String
 }
 
 input MessageLikesInput {

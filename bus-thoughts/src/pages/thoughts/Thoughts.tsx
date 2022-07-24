@@ -27,6 +27,7 @@ const MESSAGE_QUERY = gql`
       content
       likes
       isLiked
+      image
     }
   }
 `;
@@ -50,7 +51,7 @@ const ThoughtsPage = () => {
 
   const inputOnClick = () => {
     history.push({
-      pathname: "/post",
+      pathname: "/bus-123/thoughts/post",
       state: {
         isTopic: false,
       },
