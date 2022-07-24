@@ -7,4 +7,5 @@ export interface Message {
   replies: string[];
   likes: number;
   isLiked: boolean;
+  image: string;
 }

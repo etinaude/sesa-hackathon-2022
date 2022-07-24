@@ -15,7 +15,9 @@ const WelcomePage = () => {
       <button
         onClick={() => {
           const name: string = uniqueNamesGenerator(config)
+          const image: string = "https://source.boringavatars.com/beam/48/" + name.replace(/\s/g, "%20") + "?colors=ffad08,edd75a,73b06f,0c8f8f,405059"
           window.sessionStorage.setItem("name", name);
+          window.sessionStorage.setItem("image", image)
           history.push("/thoughts");
           window.location.reload();
         }}

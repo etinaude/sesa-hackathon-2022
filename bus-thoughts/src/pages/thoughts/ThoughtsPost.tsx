@@ -11,6 +11,7 @@ const CREATE_MESSAGE = gql`
     createMessage(messageInput: $messageInput) {
       name
       content
+      image
     }
   }
 `;
@@ -21,12 +22,12 @@ const ThoughtsPost: React.FC = () => {
   const hisotry = useHistory();
 
   const handleButtonClick = () => {
-    console.log(postData);
     createMessage({
       variables: {
         messageInput: {
-          name: "Carlie",
+          name: window.sessionStorage.getItem("name"),
           content: postData,
+          image: window.sessionStorage.getItem("image")
         },
       },
     });
