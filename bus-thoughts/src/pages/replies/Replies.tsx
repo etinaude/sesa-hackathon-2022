@@ -92,34 +92,42 @@ const Replies = () => {
       if (isTopic) {
         createReply({
           variables: {
-            replyTo: message._id,
-            name: name,
-            content: replyValue,
-            isTopic: true,
+            replyInput: {
+              replyTo: message._id,
+              name: name,
+              content: replyValue,
+              isTopic: true,
+            },
           },
         });
       } else {
         createReply({
           variables: {
-            replyTo: message._id,
-            name: name,
-            content: replyValue,
-            isTopic: false,
+            replyInput: {
+              replyTo: message._id,
+              name: name,
+              content: replyValue,
+              isTopic: false,
+            },
           },
         });
       }
     }
-    // window.location.reload();
+    window.location.reload();
   };
 
   return (
-    <div className="px-8 h-screen flex flex-col">
-      <section id="header" className="pt-10">
+    <div className="px-8 h-screen flex flex-col overflow-y-scroll">
+      <section id="header" className="pt-10 sticky top-0 bg-white">
         <h1 className="font-semibold mb-4 text-[30px]">Replies</h1>
       </section>
       <div className="flex flex-col divide-y">
-        <ThoughtComp thoughts={state.message} isTopic={isTopic} />
-        <div>
+        <ThoughtComp
+          thoughts={state.message}
+          isTopic={isTopic}
+          replies={message.replies.length}
+        />
+        <div className="">
           {replyMessages.length > 0 ? (
             replyMessages.map((message, index) => {
               return (
@@ -136,7 +144,7 @@ const Replies = () => {
           )}
         </div>
       </div>
-      <div className="flex flex-row h-full items-end mb-10 gap-3">
+      <div className="flex flex-row sticky bottom-10 mb-10 gap-3">
         <textarea
           onChange={(e) => setReplyValue(e.target.value)}
           className=" outline-none resize-none w-full h-14 bg-grey rounded-lg py-3 px-3"
