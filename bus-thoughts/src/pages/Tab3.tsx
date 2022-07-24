@@ -105,7 +105,7 @@ const Tab3: React.FC = () => {
   const history = useHistory();
 
   const inputOnClick = () => {
-    history.push("/thoughts/post");
+    history.push("/bus-123/thoughts/post");
     window.location.reload();
   };
   return (
