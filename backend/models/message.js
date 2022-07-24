@@ -8,6 +8,7 @@ const messageSchema = new Schema({
   replies: [String],
   replyTo: String, //id
   createdAt: String,
+  image: String
 });
 
 module.exports = model("Message", messageSchema);

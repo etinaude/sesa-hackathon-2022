@@ -7,6 +7,7 @@ import ReplyIconActive from "../assets/reply-icon-active.svg";
 import { useState } from "react";
 import { Message } from "../types/message";
 import { useHistory } from "react-router";
+import Avatar from "boring-avatars";
 
 // const SET_LIKED = gql`
 //   mutation SetLiked($id: ID!, $liked: Boolean!) {
@@ -76,7 +77,8 @@ const ThoughtComp = (props: IThoughtComp) => {
   return (
     <div className="py-4">
       <section id="header" className="flex flex-row gap-3">
-        <div id="avatar" className="w-12 h-12 rounded-full bg-slate-500"></div>
+        <img src={thoughts.image} alt="avatar"/>
+        {/* <div id="avatar">{thoughts.image}</div> */}
         <div id="info" className="flex flex-col">
           <p className="text-lg font-bold">{thoughts.name}</p>
           <p className="text-sm">{`${date.toLocaleString()}`}</p>

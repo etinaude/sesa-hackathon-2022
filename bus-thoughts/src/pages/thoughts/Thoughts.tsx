@@ -27,6 +27,7 @@ const MESSAGE_QUERY = gql`
       content
       likes
       isLiked
+      image
     }
   }
 `;
