@@ -78,12 +78,10 @@ const ThoughtComp = (props: IThoughtComp) => {
       </section>
       <section
         id="footer"
-        className="items-center flex flex-row gap-3 mt-2 px-1"
-      >
+        className="items-center flex flex-row gap-3 mt-2 px-1">
         <div
           id="reply"
-          className="gap-1 items-center flex flex-row justify-center"
-        >
+          className="gap-1 items-center flex flex-row justify-center">
           <button onClick={handleLikedClicked}>
             <img
               src={likeActive ? LikeIconActive : LikeIconInactive}
@@ -94,21 +92,19 @@ const ThoughtComp = (props: IThoughtComp) => {
         </div>
         <div
           id="like"
-          className="gap-1 items-center flex flex-row justify-center"
-        >
+          className="gap-1 items-center flex flex-row justify-center">
           <button
             onTouchStart={() => {
               setReplyActive(true);
               history.push({
-                pathname: "/bus-123/thoughts/replies",
+                pathname: "/thoughts/replies",
                 state: {
                   message: thoughts,
                   isTopic: isTopic,
                 },
               });
               window.location.reload();
-            }}
-          >
+            }}>
             <img
               src={replyActive ? ReplyIconActive : ReplyIconInactive}
               alt="reply-icon"

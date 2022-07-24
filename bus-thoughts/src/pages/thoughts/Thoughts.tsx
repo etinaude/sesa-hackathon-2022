@@ -51,7 +51,7 @@ const ThoughtsPage = () => {
 
   const inputOnClick = () => {
     history.push({
-      pathname: "/bus-123/thoughts/post",
+      pathname: "/thoughts/post",
       state: {
         isTopic: false,
       },
