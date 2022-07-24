@@ -1,13 +1,18 @@
 import { useHistory } from "react-router";
-import { uniqueNamesGenerator, Config, adjectives, animals } from 'unique-names-generator';
+import {
+  uniqueNamesGenerator,
+  Config,
+  adjectives,
+  animals,
+} from "unique-names-generator";
 
 const WelcomePage = () => {
   const history = useHistory();
 
   const config: Config = {
     dictionaries: [adjectives, animals],
-    separator: " "
-  }
+    separator: " ",
+  };
 
   return (
     <div className="w-screen h-screen bg-primary text-white flex flex-col gap-10 items-center justify-center">

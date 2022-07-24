@@ -9,18 +9,6 @@ import { Message } from "../types/message";
 import { useHistory } from "react-router";
 import Avatar from "boring-avatars";
 
-// const SET_LIKED = gql`
-//   mutation SetLiked($id: ID!, $liked: Boolean!) {
-//     setLiked(id: $id, liked: $liked) {
-//       id
-//       likes
-//       message
-//       date
-//       reply
-//     }
-//   }
-// `;
-
 const SET_LIKES = gql`
   mutation SetLikes($id: ID!, $likesInput: MessageLikesInput) {
     setLikes(ID: $id, likesInput: $likesInput) {
@@ -37,10 +25,8 @@ interface IThoughtComp {
 
 const ThoughtComp = (props: IThoughtComp) => {
   const history = useHistory();
-  const currentDate = Date.now();
   const { thoughts } = props;
   const [hasLiked, setHasLiked] = useState(false);
-  const date = new Date();
   const [likeActive, setLikeActive] = useState(thoughts.isLiked);
   const [replyActive, setReplyActive] = useState(false);
   const [likedCount, setLikedCount] = useState(thoughts.likes);
@@ -81,7 +67,9 @@ const ThoughtComp = (props: IThoughtComp) => {
         {/* <div id="avatar">{thoughts.image}</div> */}
         <div id="info" className="flex flex-col">
           <p className="text-lg font-bold">{thoughts.name}</p>
-          <p className="text-sm">{`${date.toLocaleString()}`}</p>
+          <p className="text-sm">
+            {new Date(thoughts.createdAt).toLocaleString()}
+          </p>
         </div>
       </section>
       <section id="content" className="mt-1 px-1">

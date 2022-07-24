@@ -1,4 +1,5 @@
 import { IonContent, IonPage } from "@ionic/react";
+import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import Fab from "../../components/Fab";
 import InputComp from "../../components/InputComp";
@@ -16,22 +17,50 @@ const CREATE_MESSAGE = gql`
   }
 `;
 
+const CREATE_TOPIC_MESSAGE = gql`
+  mutation CreateTopicMessage($topicMessageInput: MessageInput) {
+    createTopicMessage(topicMessageInput: $topicMessageInput) {
+      name
+      content
+    }
+  }
+`;
+
 const ThoughtsPost: React.FC = () => {
+  const location = useLocation();
+  const state: any = location.state;
   const [postData, setPostData] = useState("");
-  const [createMessage, { data, loading, error }] = useMutation(CREATE_MESSAGE);
-  const hisotry = useHistory();
+  const [createMessage] = useMutation(CREATE_MESSAGE);
+  const [createTopicMessage] = useMutation(CREATE_TOPIC_MESSAGE);
+
+  const history = useHistory();
 
   const handleButtonClick = () => {
-    createMessage({
-      variables: {
-        messageInput: {
-          name: window.sessionStorage.getItem("name"),
-          content: postData,
-          image: window.sessionStorage.getItem("image")
+    console.log(postData);
+
+    if (state.isTopic) {
+      createTopicMessage({
+        variables: {
+          topicMessageInput: {
+            name: "Carlie",
+            content: postData,
+          },
         },
-      },
-    });
-    hisotry.push("/bus123/thoughts");
+      });
+      history.push("/tab3");
+    } else {
+      createMessage({
+        variables: {
+          messageInput: {
+            name: window.sessionStorage.getItem("name"),
+            content: postData,
+            image: window.sessionStorage.getItem("image")
+          },
+        },
+      });
+      history.push("/bus-123/thoughts");
+    }
+    
     window.location.reload();
   };
 

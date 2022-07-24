@@ -8,16 +8,38 @@ import {
 import "./Tab4.scss";
 import React, { useState, useEffect } from "react";
 import Fab from "../components/Fab";
+import { gql, useMutation } from "@apollo/client";
+import { useHistory } from "react-router-dom";
+
+const CREATE_LEADERBOARD_TIME = gql`
+  mutation CreateLeaderboardTime($leaderboardInput: LeaderboardInput) {
+    createLeaderboardTime(leaderboardInput: $leaderboardInput) {
+      name
+      image
+      time
+    }
+  }
+`;
 
 const Tab4: React.FC = () => {
   const [textArray, updateDisplayText] = useState([<></>]);
   const [time, setTime] = useState(0);
   const [running, setRunning] = useState(false);
   const [isModal, setModal] = useState(false);
+  const [createLeaderboardTime] = useMutation(CREATE_LEADERBOARD_TIME);
 
   const requiredText = "abcdefghijklmnopqrstuvwxyz";
 
   const closeModal = () => {
+    createLeaderboardTime({
+      variables: {
+        leaderboardInput: {
+          name: window.sessionStorage.getItem("name"),
+          image: window.sessionStorage.getItem("image"),
+          time: time.toString()
+        },
+      },
+    });
     setModal(false);
     setTime(0);
     updateTextArray("");
@@ -77,7 +99,7 @@ const Tab4: React.FC = () => {
     // Update the document title using the browser API
     updateTextArray("");
   }, []);
-
+  const history = useHistory();
   return (
     <IonPage>
       <IonContent fullscreen>
@@ -112,6 +134,7 @@ const Tab4: React.FC = () => {
               <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
               <span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
             </p>
+            <button className="solid rounded bg-sky-500 p-5" onTouchEnd={()=>history.push("/*/leaderboard")}>Go to Leaderboard</button>
           </div>
         </div>
       </IonContent>
