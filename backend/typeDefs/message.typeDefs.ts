@@ -30,6 +30,7 @@ input MessageReplyInput {
     name: String
     content: String
     isTopic: Boolean
+    image: String
 }
 
 type Query {

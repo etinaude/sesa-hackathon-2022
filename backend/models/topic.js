@@ -7,6 +7,7 @@ const topicMessageSchema = new Schema({
   isLiked: Boolean,
   replies: [String],
   replyTo: String, //id
+  image: String,
   createdAt: String,
 });
 
