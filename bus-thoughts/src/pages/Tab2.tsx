@@ -56,9 +56,7 @@ const Tab2: React.FC = () => {
       <IonContent fullscreen>
         <div id="content heading" className="px-8">
           <section id="header" className="pb-2 pt-10">
-            <h1 className="font-semibold mb-4 text-[30px]">
-              Draw Together
-            </h1>
+            <h1 className="font-semibold mb-4 text-[30px]">Draw</h1>
           </section>
         </div>
         <div className="color-menu-container">
@@ -97,7 +95,6 @@ const Tab2: React.FC = () => {
             onChange={onChange}
           />
         </div>
-        
       </IonContent>
       <Fab></Fab>
     </IonPage>
