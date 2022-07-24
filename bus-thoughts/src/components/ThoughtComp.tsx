@@ -8,18 +8,6 @@ import { useState } from "react";
 import { Message } from "../types/message";
 import { useHistory } from "react-router";
 
-// const SET_LIKED = gql`
-//   mutation SetLiked($id: ID!, $liked: Boolean!) {
-//     setLiked(id: $id, liked: $liked) {
-//       id
-//       likes
-//       message
-//       date
-//       reply
-//     }
-//   }
-// `;
-
 const SET_LIKES = gql`
   mutation SetLikes($id: ID!, $likesInput: MessageLikesInput) {
     setLikes(ID: $id, likesInput: $likesInput) {
