@@ -21,17 +21,18 @@ type ContainerProps = Message;
 
 interface IThoughtComp {
   thoughts: Message;
+  isTopic: boolean;
+  replies?: number;
 }
 
 const ThoughtComp = (props: IThoughtComp) => {
   const history = useHistory();
-  const { thoughts } = props;
-  const [hasLiked, setHasLiked] = useState(false);
+  const { thoughts, isTopic, replies } = props;
   const [likeActive, setLikeActive] = useState(thoughts.isLiked);
   const [replyActive, setReplyActive] = useState(false);
   const [likedCount, setLikedCount] = useState(thoughts.likes);
 
-  const [setLikes, { data, loading, error }] = useMutation(SET_LIKES);
+  const [setLikes] = useMutation(SET_LIKES);
 
   const handleLikedClicked = () => {
     if (!likeActive) {
@@ -63,7 +64,7 @@ const ThoughtComp = (props: IThoughtComp) => {
   return (
     <div className="py-4">
       <section id="header" className="flex flex-row gap-3">
-        <img src={thoughts.image} alt="avatar"/>
+        <img src={thoughts.image} alt="avatar" />
         {/* <div id="avatar">{thoughts.image}</div> */}
         <div id="info" className="flex flex-col">
           <p className="text-lg font-bold">{thoughts.name}</p>
@@ -99,8 +100,11 @@ const ThoughtComp = (props: IThoughtComp) => {
             onTouchStart={() => {
               setReplyActive(true);
               history.push({
-                pathname: "/bus-123/thoughts/replies/1",
-                state: { thoughts: thoughts },
+                pathname: "/bus-123/thoughts/replies",
+                state: {
+                  message: thoughts,
+                  isTopic: isTopic,
+                },
               });
               window.location.reload();
             }}
@@ -110,7 +114,7 @@ const ThoughtComp = (props: IThoughtComp) => {
               alt="reply-icon"
             />
           </button>
-          <p className="text-sm">3</p>
+          <p className="text-sm">{replies != 0 && replies}</p>
         </div>
       </section>
     </div>
