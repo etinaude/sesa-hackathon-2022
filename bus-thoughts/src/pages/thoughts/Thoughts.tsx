@@ -50,7 +50,7 @@ const ThoughtsPage = () => {
   console.log("messages: ", messages);
 
   const inputOnClick = () => {
-    history.push("/thoughts/post");
+    history.push("/bus-123/thoughts/post");
     window.location.reload();
   };
   return (
