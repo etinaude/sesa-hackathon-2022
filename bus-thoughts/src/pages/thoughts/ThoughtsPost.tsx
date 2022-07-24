@@ -31,7 +31,7 @@ const ThoughtsPost: React.FC = () => {
         },
       },
     });
-    hisotry.push("/thoughts");
+    hisotry.push("/bus123/thoughts");
     window.location.reload();
   };
 
