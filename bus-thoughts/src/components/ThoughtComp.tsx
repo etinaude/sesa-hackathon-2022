@@ -96,25 +96,6 @@ const ThoughtComp = (props: IThoughtComp) => {
           id="like"
           className="gap-1 items-center flex flex-row justify-center"
         >
-          <button
-            onTouchStart={() => {
-              setReplyActive(true);
-              history.push({
-                pathname: "/bus-123/thoughts/replies",
-                state: {
-                  message: thoughts,
-                  isTopic: isTopic,
-                },
-              });
-              window.location.reload();
-            }}
-          >
-            <img
-              src={replyActive ? ReplyIconActive : ReplyIconInactive}
-              alt="reply-icon"
-            />
-          </button>
-          <p className="text-sm">{replies != 0 && replies}</p>
         </div>
       </section>
     </div>
