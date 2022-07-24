@@ -56,7 +56,7 @@ const App: React.FC = () => (
           <Route exact path="/">
             <WelcomePage />
           </Route>
-          <Route exact path="/*/leaderboard">
+          <Route exact path="/bus-123/leaderboard">
             <LeaderBoard />
           </Route>
           <Route path="/bus-123/thoughts/replies">
