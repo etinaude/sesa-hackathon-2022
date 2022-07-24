@@ -1,8 +1,8 @@
 import { BrowserRouter, Redirect, Route } from "react-router-dom";
 import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import ThoughtsPage from "./pages/toughts/Thoughts";
-import ThoughtsPost from "./pages/toughts/ThoughtsPost";
+import ThoughtsPage from "./pages/thoughts/Thoughts";
+import ThoughtsPost from "./pages/thoughts/ThoughtsPost";
 import Tab2 from "./pages/Tab2";
 import Tab3 from "./pages/Tab3";
 import Tab4 from "./pages/Tab4";
@@ -27,6 +27,7 @@ import "@ionic/react/css/display.css";
 // import "./theme/variables.css";
 import "./index.css";
 import Replies from "./pages/replies/Replies";
+import WelcomePage from "./pages/Welcome";
 // import "./theme/variables.css";
 
 setupIonicReact();
@@ -36,23 +37,23 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonRouterOutlet>
         <BrowserRouter>
-          <Route exact path="/thoughts">
+          <Route exact path="/*/thoughts">
             <ThoughtsPage />
           </Route>
-          <Route exact path="/tab2">
+          <Route exact path="/*/canvas">
             <Tab2 />
           </Route>
-          <Route exact path="/tab3">
+          <Route exact path="/*/tab3">
             <Tab3 />
           </Route>
-          <Route exact path="/tab4">
+          <Route exact path="/*/tab4">
             <Tab4 />
           </Route>
           <Route exact path="/thoughts/post">
             <ThoughtsPost />
           </Route>
           <Route exact path="/">
-            <Redirect exact to="/thoughts" />
+            <WelcomePage />
           </Route>
           <Route path="/thoughts/replies/:id">
             <Replies />
