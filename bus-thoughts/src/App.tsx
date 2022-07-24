@@ -28,6 +28,7 @@ import "@ionic/react/css/display.css";
 import "./index.css";
 import Replies from "./pages/replies/Replies";
 import WelcomePage from "./pages/Welcome";
+import LeaderBoard from "./pages/LeaderBoard";
 // import "./theme/variables.css";
 
 setupIonicReact();
@@ -55,6 +56,10 @@ const App: React.FC = () => (
           <Route exact path="/">
             <WelcomePage />
           </Route>
+          <Route exact path="/*/leaderboard">
+            <LeaderBoard/>
+          </Route>
+
           <Route path="/thoughts/replies/:id">
             <Replies />
           </Route>
