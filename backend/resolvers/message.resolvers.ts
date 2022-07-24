@@ -67,7 +67,7 @@ export const messageResolver = {
             const updatedMessage = (await Message.updateOne({ _id: ID }, { likes: likes, isLiked: isLiked })).modifiedCount;
             return updatedMessage;
         },
-        async createTopicMessage(_, { topicMessageInput: { name, content } }) {
+        async createTopicMessage(_, { topicMessageInput: { name, content, image } }) {
             const newTopicMessage = new TopicMessage({
                 name: name,
                 content: content,
@@ -75,7 +75,8 @@ export const messageResolver = {
                 likes: 0,
                 isLiked: false,
                 replies: [],
-                replyTo: null
+                replyTo: null,
+                image: image
             });
 
             const res = await newTopicMessage.save();

@@ -1,5 +1,6 @@
 import { useParams } from "react-router";
 import { useLocation } from "react-router-dom";
+import Fab from "../../components/Fab";
 import ReplyComp from "../../components/ReplyComp";
 import ThoughtComp from "../../components/ThoughtComp";
 import { useQuery, gql, useMutation } from "@apollo/client";

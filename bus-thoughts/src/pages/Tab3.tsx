@@ -116,6 +116,7 @@ const TOPIC_MESSAGE_QUERY = gql`
       isLiked
       replies
       replyTo
+      image
       createdAt
     }
   }

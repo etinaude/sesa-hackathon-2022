@@ -22,6 +22,7 @@ const CREATE_TOPIC_MESSAGE = gql`
     createTopicMessage(topicMessageInput: $topicMessageInput) {
       name
       content
+      image
     }
   }
 `;
@@ -44,8 +45,9 @@ const ThoughtsPost: React.FC = () => {
       createTopicMessage({
         variables: {
           topicMessageInput: {
-            name: name,
+            name: window.sessionStorage.getItem("name"),
             content: postData,
+            image: window.sessionStorage.getItem("image")
           },
         },
       });
