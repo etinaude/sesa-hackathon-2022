@@ -1,22 +1,20 @@
-import {ApolloServer, gql} from 'apollo-server'
-import { messageResolver, messageSchema } from './schemas/message';
-import { busSchema, busResolver } from './schemas/bus';
-import { topicSchema, topicResolver } from './schemas/topic';
+import { ApolloServer } from "apollo-server";
+import mongoose from 'mongoose';
+import { messageTypeDef } from "./typeDefs/message.typeDefs";
+import { messageResolver } from "./resolvers/message.resolvers";
 
-const baseTypeDefs = gql`
-  type Query
-`
+const MONGODB_URI = "mongodb+srv://jadejaguar:jadejaguarsesahack2022@cluster0.tkjkt8t.mongodb.net/test?retryWrites=true&w=majority";
 
 const server = new ApolloServer({
-//   typeDefs: [baseTypeDefs, Bus],
-  typeDefs: [busSchema, messageSchema, topicSchema],
-  resolvers: [busResolver, messageResolver, topicResolver],
-  csrfPrevention: true,
-  introspection: true,
-  cache: 'bounded',
+    typeDefs: [messageTypeDef],
+    resolvers: [messageResolver]
 });
 
-// The `listen` method launches a web server.
-server.listen().then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
-});
+mongoose.connect(MONGODB_URI)
+    .then(() => {
+        console.log("MongoDB connection successful");
+        return server.listen({ port: 4000 })
+    })
+    .then((res) => {
+        console.log(`server running at ${res.url}`);
+    });
