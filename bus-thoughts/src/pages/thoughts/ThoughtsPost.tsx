@@ -49,7 +49,7 @@ const ThoughtsPost: React.FC = () => {
           },
         },
       });
-      hisotry.push("/*/tab3");
+      history.push("/*/tab3");
     } else {
       createMessage({
         variables: {
@@ -67,7 +67,7 @@ const ThoughtsPost: React.FC = () => {
   };
 
   const handleBack = () => {
-    hisotry.goBack();
+    history.goBack();
   };
 
   return (
