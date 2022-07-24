@@ -54,47 +54,51 @@ const Tab2: React.FC = () => {
   return (
     <IonPage>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tab 2</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ReactSketchCanvas
-          style={styles}
-          strokeWidth={strokeWidth}
-          strokeColor={pickedColor}
-          ref={canvasRef}
-          onChange={onChange}
-        />
-      </IonContent>
-
-      <div className="color-menu-container">
-        <div className="item" onClick={() => setColorOpen(!isColorOpen)}>
-          size
-          <input
-            type="range"
-            min="1"
-            max="10"
-            className="slider"
-            value={strokeWidth}
-            onChange={(e) => setStrokeWidth(Number(e.target.value))}
-          />
+        <div id="content heading" className="px-8">
+          <section id="header" className="pb-2 pt-10">
+            <h1 className="font-semibold mb-4 text-[30px]">
+              Draw Together
+            </h1>
+          </section>
         </div>
-
-        <div className="item">
-          <img
-            onClick={() => setColorOpen(!isColorOpen)}
-            alt=""
-            src="https://res.cloudinary.com/etienne-naude/image/upload/v1658547625/color_n8jdfc.png"></img>
-
-          <div className={isColorOpen ? "picker " : "picker hidden"}>
-            <BlockPicker
-              color={pickedColor}
-              onChangeComplete={(pickedColor) => selectColor(pickedColor)}
+        <div className="color-menu-container">
+          <div className="item" onClick={() => setColorOpen(!isColorOpen)}>
+            size
+            <input
+              type="range"
+              min="1"
+              max="10"
+              className="slider"
+              value={strokeWidth}
+              onChange={(e) => setStrokeWidth(Number(e.target.value))}
             />
           </div>
+
+          <div className="item">
+            <img
+              onClick={() => setColorOpen(!isColorOpen)}
+              alt=""
+              src="https://res.cloudinary.com/etienne-naude/image/upload/v1658547625/color_n8jdfc.png"></img>
+
+            <div className={isColorOpen ? "picker " : "picker hidden"}>
+              <BlockPicker
+                color={pickedColor}
+                onChangeComplete={(pickedColor) => selectColor(pickedColor)}
+              />
+            </div>
+          </div>
         </div>
-      </div>
+        <div className="canvas">
+          <ReactSketchCanvas
+            style={styles}
+            strokeWidth={strokeWidth}
+            strokeColor={pickedColor}
+            ref={canvasRef}
+            onChange={onChange}
+          />
+        </div>
+        
+      </IonContent>
       <Fab></Fab>
     </IonPage>
   );
