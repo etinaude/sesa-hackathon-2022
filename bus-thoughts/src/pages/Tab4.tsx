@@ -36,7 +36,7 @@ const Tab4: React.FC = () => {
         leaderboardInput: {
           name: window.sessionStorage.getItem("name"),
           image: window.sessionStorage.getItem("image"),
-          time: time.toString()
+          time: time.toString(),
         },
       },
     });
@@ -124,7 +124,8 @@ const Tab4: React.FC = () => {
 
         <div
           className={isModal ? "modal" : "hidden"}
-          onTouchEnd={() => closeModal()}>
+          onTouchEnd={() => closeModal()}
+        >
           <div className="modal-content">
             <h2> WOOHOO!!! you're done</h2>
 
@@ -134,7 +135,12 @@ const Tab4: React.FC = () => {
               <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
               <span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
             </p>
-            <button className="solid rounded bg-sky-500 p-5" onTouchEnd={()=>history.push("/*/leaderboard")}>Go to Leaderboard</button>
+            <button
+              className="solid rounded bg-sky-500 p-3"
+              onTouchEnd={() => history.push("/*/leaderboard")}
+            >
+              Go to Leaderboard
+            </button>
           </div>
         </div>
       </IonContent>
