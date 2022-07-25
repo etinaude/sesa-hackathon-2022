@@ -14,3 +14,6 @@ Here are some screenshots of the prototype we developed over the weekend (in les
 
 Initial concept design:
 ![concept design](https://user-images.githubusercontent.com/37087904/180671235-7b8c0e57-1199-4ef4-b5eb-f53d4d1b80d4.png)
+
+Concept bus poster with QR code:
+![bus-besties](https://user-images.githubusercontent.com/37087904/180671394-f1f3780f-13cb-4b95-82da-89e2a4c573c3.png)
